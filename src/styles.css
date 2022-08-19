@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+.App {
+  font-family: "Verdana, sans-serif", cursive;
+  display: flex;
+  padding: 15px;
+}
+.App .Meta {
+  flex-grow: 1;
+  padding-right: 15px;
+}
+.App .Meta p{
+  font-size:150% ;
+}
+.App .Meta select{
+  font-family: inherit;
+  padding: 5px;
+  width: 70%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+.App .Meta input {
+  font-family: inherit;
+  padding: 5px;
+  width: 70%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+.App .Meta button {
+  padding: 10px 15px;
+  border: 2px solid #542ea1;
+  background-color: #823fd3;
+  font-family: inherit;
+  margin: 20px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  color: aliceblue;
+  font-size: 150%;
+}
+.App #downloadWrapper {
+  padding: 60px;
+}
+.App #certificateWrapper {
+  box-shadow: 0 0 5px #000;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  padding: 70px;
+}
+.App #certificateWrapper img {
+  display: block;
+}
+.App #certificateWrapper p {
+  font-family: "Staatliches", cursive;
+  font-size: 65pt;
+}
+
+#actorname
+{
+ align-content: center;
+ text-align: center
+}
+#mc
+{
+ /* align-content: center;
+ text-align: center; */
+ font-size: 130%;
+}
