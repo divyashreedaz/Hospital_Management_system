@@ -41,7 +41,8 @@
   font-size: 150%;
 }
 .App #downloadWrapper {
-  padding: 60px;
+
+  width: 55%;
 }
 .App #certificateWrapper {
   box-shadow: 0 0 5px #000;
@@ -55,7 +56,7 @@
 }
 .App #certificateWrapper p {
   font-family: "Staatliches", cursive;
-  font-size: 65pt;
+  font-size: 50pt;
 }
 
 #actorname
@@ -68,4 +69,85 @@
  /* align-content: center;
  text-align: center; */
  font-size: 130%;
+}
+.float-container {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.float-child {
+  width: 40%;
+  float: left;
+  padding: 5px;
+
+}  
+.float-child1 {
+  width: 40%;
+  float: left;
+  padding: 5px;
+ 
+  text-align: center;
+  margin-left: 20%;
+} 
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  grid-auto-rows: 100px;
+  margin-top: 2%;
+}
+
+.box1 {
+  grid-column-start: 1;
+  grid-column-end: 16;
+  grid-row-start: 1;
+  grid-row-end: 8;
+
+}
+.box3 {
+  grid-column-start: 20;
+  grid-column-end:30;
+  grid-row-start: 1;
+  grid-row-end: 3;
+
+}
+.box4 {
+  grid-column-start: 20;
+  grid-column-end:30;
+  grid-row-start: 3;
+  grid-row-end: 6;
+
+ 
+}
+.box5 {
+  grid-column-start: 1;
+  grid-column-end:31;
+  grid-row-start: 8;
+  grid-row-end: 13;
+
+}
+.box6
+{
+  grid-column-start: 20;
+  grid-column-end:30;
+  grid-row-start: 6;
+  grid-row-end: 8;
+
+
+}
+table, td, th {  
+  /* border: 1px solid #ddd; */
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td{
+  padding: 10px;
+}
+tr{
+  padding: 80px;
 }
