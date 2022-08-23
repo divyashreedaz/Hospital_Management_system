@@ -4,14 +4,15 @@
 .App {
   font-family: "Verdana, sans-serif", cursive;
   display: flex;
-  padding: 15px;
+
+  font-size: 90%;
 }
 .App .Meta {
   flex-grow: 1;
   padding-right: 15px;
 }
 .App .Meta p{
-  font-size:150% ;
+  font-size:100% ;
 }
 .App .Meta select{
   font-family: inherit;
@@ -43,13 +44,16 @@
 .App #downloadWrapper {
 
   width: 55%;
+  
+  font-size: 80%;
 }
 .App #certificateWrapper {
   box-shadow: 0 0 5px #000;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  padding: 70px;
+  padding: 100px;
+  
 }
 .App #certificateWrapper img {
   display: block;
@@ -58,7 +62,46 @@
   font-family: "Staatliches", cursive;
   font-size: 50pt;
 }
+.App #certificateWrapcbp {
+  box-shadow: 0 0 5px #000;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  height:55%
+  
+}
+.App #certificateWrapcbp img {
+  display: block;
+}
+.App #certificateWrapcbp p {
+  font-family: "Staatliches", cursive;
+  font-size: 50pt;
+}
 
+
+
+.App #certificateWrap {
+  box-shadow: 0 0 5px #000;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  height:70%
+  
+}
+.App #certificateWrap img {
+  display: block;
+}
+.App #certificateWrap p {
+  font-family: "Staatliches", cursive;
+  font-size: 50pt;
+}
+
+
+.pagebreak {
+  break-after: always !important;
+  page-break-after: always !important;
+  page-break-inside: avoid !important;
+}
 #actorname
 {
  align-content: center;
@@ -71,7 +114,6 @@
  font-size: 130%;
 }
 .float-container {
-  border: 3px solid #fff;
   padding: 20px;
 }
 
@@ -84,10 +126,23 @@
 .float-child1 {
   width: 40%;
   float: left;
-  padding: 5px;
+ 
  
   text-align: center;
   margin-left: 20%;
+} 
+.float-child2{
+  width: 40%;
+  float: left;
+  margin-left: -2%;
+
+}  
+.float-child3 {
+  width: 40%;
+  float: left;
+  padding: 5px;
+ 
+  text-align: center;
 } 
 
 .wrapper {
@@ -101,7 +156,7 @@
   grid-column-start: 1;
   grid-column-end: 16;
   grid-row-start: 1;
-  grid-row-end: 8;
+  grid-row-end: 4;
 
 }
 .box3 {
@@ -114,24 +169,24 @@
 .box4 {
   grid-column-start: 20;
   grid-column-end:30;
-  grid-row-start: 3;
-  grid-row-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 4;
 
  
 }
 .box5 {
   grid-column-start: 1;
   grid-column-end:31;
-  grid-row-start: 8;
-  grid-row-end: 13;
+  grid-row-start: 5;
+  grid-row-end: 8;
 
 }
 .box6
 {
   grid-column-start: 20;
   grid-column-end:30;
-  grid-row-start: 6;
-  grid-row-end: 8;
+  grid-row-start: 4;
+  grid-row-end: 4;
 
 
 }
@@ -146,7 +201,7 @@ table {
 }
 
 th, td{
-  padding: 10px;
+  padding: 7px;
 }
 tr{
   padding: 80px;
