@@ -50,7 +50,7 @@ class Certificates extends Component {
       return (
 
         <div >
-          <div class="float-container" style={{marginTop:"20%"}}>
+          <div class="float-container" style={{marginTop:"15%"}}>
     
 
             <div class="float-child" >
@@ -246,7 +246,12 @@ class Certificates extends Component {
             </div>
           </div>
 
-
+          <div style={{marginTop:"15%",marginLeft:"10%",fontSize:"120%",color:"red"}}>
+            Plot No.D-84, Mahadevapuram, Gajularamaram Road, Kukatpally Hyderabad-55.
+          </div>
+          <div style={{fontSize:"120%",color:"blue",marginLeft:"4%"}}>
+            Email id: shraddhaglobalhospitals2019@gmail.com, <b style={{color:"green"}}>Website: shraddhaglobalhospitals.com</b>
+          </div>
 
 
 
@@ -277,6 +282,12 @@ class Certificates extends Component {
             </div>
             <hr style={{ width: "40%", marginLeft: "60%", marginTop: "4%" }}></hr>
           </div>
+          <div style={{marginTop:"45%",marginLeft:"5%",fontSize:"120%",color:"red"}}>
+            Plot No.D-84, Mahadevapuram, Gajularamaram Road, Kukatpally Hyderabad-55.
+          </div>
+          <div style={{fontSize:"120%",color:"blue"}}>
+            Email id: shraddhaglobalhospitals2019@gmail.com, <b style={{color:"green"}}>Website: shraddhaglobalhospitals.com</b>
+          </div>
 
         </div>
       )
@@ -288,7 +299,7 @@ class Certificates extends Component {
         <div style={{ fontSize: "150%" }}>
           <input type="checkbox" name="MC" onChange={this.chkclicked} defaultChecked={true} />MC
           <input style={{ marginLeft: "1%" }} type="checkbox" name="CBP" onChange={this.chkclicked} />CBP
-          <input style={{ marginLeft: "1%" }} type="checkbox" name="PFT" onChange={this.chkclicked} />PFT
+          {/* <input style={{ marginLeft: "1%" }} type="checkbox" name="PFT" onChange={this.chkclicked} />PFT */}
         </div>
         {(() => {
           if (this.state.certificate.MC == true && this.state.certificate.CBP == true && this.state.certificate.PFT == true) {
@@ -565,7 +576,7 @@ class Certificates extends Component {
                     placeholder="Please enter your value..."
                     value={this.state.plat}
                     onChange={(e) => {
-                      this.setState({ Name: e.target.plat });
+                      this.setState({ plat: e.target.value });
                     }}
                   />
                   <br />
@@ -586,7 +597,7 @@ class Certificates extends Component {
                   <div id="certificateWrapper">
                     {mc(this.state.startDate, this.state.Docname, this.state.Gender, this.state.Name, this.state.Age, this.state.Vecno, this.state.Job)}
                   </div>
-                  <div className='pagebreak' id="certificateWrapcbp">
+                  <div className='pagebreak'  id="certificateWrapcbp">
                     {cbp(this.state.Name, this.state.Age, this.state.sex, this.state.startDate, this.state.hemo, this.state.RBC, this.state.WBC, this.state.neut, this.state.lymp, this.state.eosi, this.state.mono, this.state.baso, this.state.pcv, this.state.mcv, this.state.mch, this.state.mchc, this.state.prbc, this.state.pwbc, this.state.plat)}
                   </div>
                 </div>
@@ -632,7 +643,7 @@ class Certificates extends Component {
 
                 <div id="downloadWrapper" ref={el => (this.componentRef = el)}>
                   <div id="certificateWrapper">
-                    <div >MEDICAL CERTIFICATE</div>
+                    <div >MEDICAL FITNESS CERTIFICATE</div>
                     This is to certify that <p>{this.state.Name}</p>
                     <div id="certificate">
                     </div>
@@ -694,7 +705,7 @@ class Certificates extends Component {
             return (
               <div className="App">
                 <div className="Meta">
-                  <h1>Medical certificate</h1>
+                  <h1>MEDICAL FITNESS CERTIFICATE</h1>
                   <p>Date</p>
                   <input
                     type="text"
@@ -973,7 +984,7 @@ class Certificates extends Component {
                     placeholder="Please enter your value..."
                     value={this.state.plat}
                     onChange={(e) => {
-                      this.setState({ plat: e.target.plat });
+                      this.setState({ plat: e.target.value });
                     }}
                   />
                   <br />

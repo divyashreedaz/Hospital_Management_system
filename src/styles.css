@@ -85,7 +85,7 @@
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  height:70%
+  height:75%
   
 }
 .App #certificateWrap img {
@@ -101,6 +101,7 @@
   break-after: always !important;
   page-break-after: always !important;
   page-break-inside: avoid !important;
+
 }
 #actorname
 {

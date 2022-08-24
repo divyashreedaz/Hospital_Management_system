@@ -11,16 +11,13 @@ class Homepage extends Component {
                 <Navbar />
                 <div class="wrapperhome">
                     <div class="boxhome1" >
-                        <a href="/Certificates" class="button">VISITOR</a>
+                        <a href="/Certificates" class="button">VENDOR</a>
                     </div>
                     <div class="boxhome3">
-                    <a href="/Certificates" class="button">VISITOR</a>
+                    <a href="/Bill" class="button">PATIENT</a>
                     </div>
-                    <div class="boxhome4"><a href="/Certificates" class="button">VISITOR</a>
-                    </div>
-                    <div class="boxhome5">
-                    <a href="/Certificates" class="button">VISITOR</a>
-                    </div>
+                    
+                    
                 </div>
             </div>
         );
