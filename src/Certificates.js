@@ -50,8 +50,7 @@ class Certificates extends Component {
       return (
 
         <div >
-        <div style={{marginTop:"15%"}}></div>
-          <div class="float-container" >
+          <div class="float-container" style={{marginTop:"15%"}}>
     
 
             <div class="float-child" >
@@ -250,7 +249,7 @@ class Certificates extends Component {
           <div style={{marginTop:"15%",marginLeft:"10%",fontSize:"120%",color:"red"}}>
             Plot No.D-84, Mahadevapuram, Gajularamaram Road, Kukatpally Hyderabad-55.
           </div>
-          <div style={{fontSize:"120%",color:"blue",marginLeft:"4%"}}>
+          <div style={{fontSize:"100%",color:"blue",marginLeft:"%"}}>
             Email id: shraddhaglobalhospitals2019@gmail.com, <b style={{color:"green"}}>Website: shraddhaglobalhospitals.com</b>
           </div>
 
@@ -286,7 +285,7 @@ class Certificates extends Component {
           <div style={{marginTop:"45%",marginLeft:"5%",fontSize:"120%",color:"red"}}>
             Plot No.D-84, Mahadevapuram, Gajularamaram Road, Kukatpally Hyderabad-55.
           </div>
-          <div style={{fontSize:"120%",color:"blue"}}>
+          <div style={{fontSize:"100%",marginLeft:"5%",color:"blue"}}>
             Email id: shraddhaglobalhospitals2019@gmail.com, <b style={{color:"green"}}>Website: shraddhaglobalhospitals.com</b>
           </div>
 
@@ -597,8 +596,10 @@ class Certificates extends Component {
                 <div id="downloadWrapper" ref={el => (this.componentRef = el)}>
                   <div id="certificateWrapper">
                     {mc(this.state.startDate, this.state.Docname, this.state.Gender, this.state.Name, this.state.Age, this.state.Vecno, this.state.Job)}
+                   
                   </div>
                   <div className='pagebreak'  id="certificateWrapcbp">
+                  <br/>      <br/>   
                     {cbp(this.state.Name, this.state.Age, this.state.sex, this.state.startDate, this.state.hemo, this.state.RBC, this.state.WBC, this.state.neut, this.state.lymp, this.state.eosi, this.state.mono, this.state.baso, this.state.pcv, this.state.mcv, this.state.mch, this.state.mchc, this.state.prbc, this.state.pwbc, this.state.plat)}
                   </div>
                 </div>
