@@ -50,7 +50,8 @@ class Certificates extends Component {
       return (
 
         <div >
-          <div class="float-container" style={{marginTop:"15%"}}>
+        <div style={{marginTop:"15%"}}></div>
+          <div class="float-container" >
     
 
             <div class="float-child" >
@@ -162,21 +163,21 @@ class Certificates extends Component {
                     <th style={{ marginLeft: "-2%" }}>ADULTS</th>
                     <div style={{ marginLeft: "15%" }}>
                       <tr>40-75%</tr>
-                      <tr>40-75%</tr>
-                      <tr>40-75%</tr>
-                      <tr>40-75%</tr>
-                      <tr>40-75%</tr>
+                      <tr>20-40%</tr>
+                      <tr>01-06%</tr>
+                      <tr>02-10%</tr>
+                      <tr>0-2%</tr>
                     </div>
 
                   </div>
 
                   <div class="float-child1">
                     <th>CHILDREN</th>
-                    <tr>40-75%</tr>
-                    <tr>40-75%</tr>
-                    <tr>40-75%</tr>
-                    <tr>40-75%</tr>
-                    <tr>40-75%</tr>
+                    <tr>20-40%</tr>
+                    <tr>40-60%</tr>
+                    <tr>01-08%</tr>
+                    <tr>02-06%</tr>
+                    <tr>0-2%</tr>
                   </div>
 
                 </div>
