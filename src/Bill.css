@@ -1,14 +1,13 @@
 
  
   
-  /* input {
-    height: 35px;
-    width: 70%;
-    padding: 7px;
+  select {
+    height: 23px;
+    width: 90%;
+    padding: 1px;
     outline: none;
-    border-radius: 5px;
-    border: 1px solid rgb(220, 220, 220);
-  } */
+
+  } 
   
   input:focus {
     border: 1px solid rgb(0, 208, 255);
@@ -39,7 +38,7 @@
     margin-top: 0.5rem;
     color: rgb(0, 208, 255);
     border: 1px solid rgb(0, 208, 255);
-    width: 33%;
+    width: 53%;
   }
   .first-division1 button {
     align-self: flex-start;
@@ -66,7 +65,7 @@
   }
   #boxalign {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 5px 2em;
   }
 
