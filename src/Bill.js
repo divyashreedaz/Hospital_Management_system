@@ -19,12 +19,12 @@ function Bill() {
     var labtotal1 = 0;
     var phartotal = 0;
     var phartotal1 = 0;
-    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "ER",emrbatch: "", emrexp: "",  emrchr: "4000", emrqty: "1" }]);
-    const [wardList, setWardList] = useState([{ warddate: "", wardservice: "ER",wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
-    const [conList, setConList] = useState([{ condate: "", conservice: "ER", conbatch: "", conexp: "",conchr: "4000", conqty: "1" }]);
-    const [serList, setSerList] = useState([{ serdate: "", serservice: "ER", serbatch: "", serexp: "",serchr: "4000", serqty: "1" }]);
-    const [labList, setLabList] = useState([{ labdate: "", labservice: "ER", labbatch: "", labexp: "",labchr: "4000", labqty: "1" }]);
-    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "ER", pharbatch: "", pharexp: "", pharchr: "4000", pharqty: "1" }]);
+    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "ER",  emrchr: "4000", emrqty: "1" }]);
+    const [wardList, setWardList] = useState([{ warddate: "", wardservice: "ER", wardchr: "4000", wardqty: "1" }]);
+    const [conList, setConList] = useState([{ condate: "", conservice: "ER", conchr: "4000", conqty: "1" }]);
+    const [serList, setSerList] = useState([{ serdate: "", serservice: "ER", serchr: "4000", serqty: "1" }]);
+    const [labList, setLabList] = useState([{ labdate: "", labservice: "ER", labchr: "4000", labqty: "1" }]);
+    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "ER", pharchr: "4000", pharqty: "1" }]);
     const [pername, setPerName] = useState('');
     const [perbill, setPerbill] = useState('');
     const [perip, setPerip] = useState('');
@@ -112,7 +112,7 @@ function Bill() {
     };
 
     const handleEmrAdd = () => {
-        setEmrList([...emrList, { emrdate: "", emrservice: "Mr",emrbatch: "", emrexp: "", emrchr: "4000", emrqty: "1" }]);
+        setEmrList([...emrList, { emrdate: "", emrservice: "ER", emrchr: "4000", emrqty: "1" }]);
     };
     const handleWardChange = (e, index) => {
         const { name, value } = e.target;
@@ -142,11 +142,11 @@ function Bill() {
     };
 
     const handleWardAdd = () => {
-        setWardList([...wardList, { warddate: "", wardservice: "",wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
+        setWardList([...wardList, { warddate: "", wardservice: "ER", wardchr: "4000", wardqty: "1" }]);
     };
     const handleConChange = (e, index) => {
         const { name, value } = e.target;
-        const list = [...wardList];
+        const list = [...conList];
         list[index][name] = value;
         if(name=="conservice"&&value=="ER")
         {
@@ -172,7 +172,7 @@ function Bill() {
     };
 
     const handleConAdd = () => {
-        setConList([...conList, { condate: "", conservice: "", conbatch: "", conexp: "",conchr: "4000", conqty: "1" }]);
+        setConList([...conList, { condate: "", conservice: "ER", conchr: "4000", conqty: "1" }]);
     };
     const handleSerChange = (e, index) => {
         const { name, value } = e.target;
@@ -202,7 +202,7 @@ function Bill() {
     };
 
     const handleSerAdd = () => {
-        setSerList([...serList, { serdate: "", serservice: "", serbatch: "", serexp: "",serchr: "4000", serqty: "1" }]);
+        setSerList([...serList, { serdate: "", serservice: "ER",serchr: "4000", serqty: "1" }]);
     };
     const handleLabChange = (e, index) => {
         const { name, value } = e.target;
@@ -233,7 +233,7 @@ function Bill() {
     };
 
     const handleLabAdd = () => {
-        setLabList([...labList, { labdate: "", labservice: "",labbatch: "", labexp: "", labchr: "4000", labqty: "1" }]);
+        setLabList([...labList, { labdate: "", labservice: "ER", labchr: "4000", labqty: "1" }]);
     };
     const handlePharChange = (e, index) => {
         const { name, value } = e.target;
@@ -264,7 +264,7 @@ function Bill() {
     };
 
     const handlePharAdd = () => {
-        setPharList([...pharList, { phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "4000", pharqty: "1" }]);
+        setPharList([...pharList, { phardate: "", pharservice: "ER", pharchr: "4000", pharqty: "1" }]);
     };
 
     {
@@ -503,7 +503,7 @@ function Bill() {
                     <option value="GENERAL WARD">General Ward</option>
                   </select>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <p>Batch No.</p>
                                         <input
                                             name="emrbatch"
@@ -524,7 +524,7 @@ function Bill() {
                                             onChange={(e) => handleEmrChange(e, index)}
                                             required
                                         />
-                                    </div>
+                                    </div> */}
 
                                     <div>
                                         <p>Charges</p>
@@ -597,7 +597,7 @@ function Bill() {
                     <option value="GENERAL WARD">General Ward</option>
                   </select>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <p>Batch No.</p>
                                         <input
                                             name="wardbatch"
@@ -618,7 +618,7 @@ function Bill() {
                                             onChange={(e) => handleWardChange(e, index)}
                                             required
                                         />
-                                    </div>
+                                    </div> */}
 
 
                                     <div>
@@ -693,7 +693,7 @@ function Bill() {
                     <option value="GENERAL WARD">General Ward</option>
                   </select>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <p>Batch No.</p>
                                         <input
                                             name="conbatch"
@@ -714,7 +714,7 @@ function Bill() {
                                             onChange={(e) => handleConChange(e, index)}
                                             required
                                         />
-                                    </div>
+                                    </div> */}
 
 
                                     <div>
@@ -790,7 +790,7 @@ function Bill() {
                     <option value="GENERAL WARD">General Ward</option>
                   </select>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <p>Batch No.</p>
                                         <input
                                             name="serbatch"
@@ -811,7 +811,7 @@ function Bill() {
                                             onChange={(e) => handleSerChange(e, index)}
                                             required
                                         />
-                                    </div>
+                                    </div> */}
 
 
                                     <div>
@@ -887,7 +887,7 @@ function Bill() {
                     <option value="GENERAL WARD">General Ward</option>
                   </select>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <p>Batch No.</p>
                                         <input
                                             name="labbatch"
@@ -908,7 +908,7 @@ function Bill() {
                                             onChange={(e) => handleLabChange(e, index)}
                                             required
                                         />
-                                    </div>
+                                    </div> */}
 
                                     <div>
                                         <p>Charges</p>
@@ -983,7 +983,7 @@ function Bill() {
                     <option value="GENERAL WARD">General Ward</option>
                   </select>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <p>Batch No.</p><input
                                             name="pharbatch"
                                             type="text"
@@ -1003,7 +1003,7 @@ function Bill() {
                                             onChange={(e) => handlePharChange(e, index)}
                                             required
                                         />
-                                    </div>
+                                    </div> */}
                                     <div>
                                         <p>Charges</p>
                                         <input
@@ -1212,25 +1212,26 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td> {emrList &&
+                                        <td> 
+                                        {/* {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.emrbatch && value.emrbatch}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
 
                                         </td>
                                         <td>
-                                        {emrList &&
+                                        {/* {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.emrexp && value.emrexp}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
                                         </td>
                                         <td>
                                             {emrList &&
@@ -1301,24 +1302,26 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>{wardList &&
+                                        <td>
+                                        {/* {wardList &&
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.warbatch && value.wardbatch}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
 
                                         </td>
-                                        <td>{wardList &&
+                                        <td>
+                                        {/* {wardList &&
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.wardexp && value.wardexp}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
 
                                         </td>
                                         <td>
@@ -1394,25 +1397,26 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>{conList &&
+                                        <td>
+                                        {/* {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.conbatch && value.conbatch}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
 
                                         </td>
                                         <td>
-                                        {conList &&
+                                        {/* {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.conexp && value.conexp}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
                                         </td>
                                         <td>
                                             {conList &&
@@ -1486,24 +1490,24 @@ function Bill() {
                                                 ))}
                                         </td>
                                         <td>
-                                        {serList &&
+                                        {/* {serList &&
                                                 serList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.serbatch && value.serbatch}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
                                         </td>
                                         <td>
-                                        {serList &&
+                                        {/* {serList &&
                                                 serList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.serexp && value.serexp}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
                                         </td>
                                         <td>
                                             {serList &&
@@ -1576,23 +1580,24 @@ function Bill() {
                                                 ))}
                                         </td>
                                         <td>
-                                        {labList &&
+                                        {/* {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labbatch && value.labbatch}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
                                         </td>
-                                        <td> {labList &&
+                                        <td> 
+                                        {/* {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labexp && value.labexp}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
 
                                         </td>
                                         <td>
@@ -1666,24 +1671,24 @@ function Bill() {
                                                 ))}
                                         </td>
                                         <td>
-                                            {pharList &&
+                                            {/* {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharbatch && value.pharbatch}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
                                         </td>
                                         <td>
-                                            {pharList &&
+                                            {/* {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharexp && value.pharexp}
 
                                                     </div>
 
-                                                ))}
+                                                ))} */}
                                         </td>
                                         <td>
                                             {pharList &&
