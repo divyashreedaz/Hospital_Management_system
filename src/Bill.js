@@ -918,7 +918,7 @@ function Bill() {
                         <div class="float-containerbl" style={{ marginTop: "25%" }}>
 
 <div style={{textAlign:"center",fontSize:"150%",fontWeight:"bold",marginBottom:"4%"}}>Discharge Breakup Bill</div>
-                            <div class="float-childbl" style={{marginLeft:"4%",marginRight:"5%"}} >
+                            <div class="float-childbl" style={{marginLeft:"5%",marginRight:"5%"}} >
                                 <tr>
                                     <td>Patient Name</td>
                                     <td>:</td>
@@ -981,7 +981,7 @@ function Bill() {
 
                         </div>
                         <br />
-                        <div style={{ marginTop: "10%" ,marginLeft:"4%",marginRight:"4%"}}>
+                        <div style={{ marginTop: "10%" ,marginLeft:"5%",marginRight:"4%"}}>
                             <div  >
                                 <table >
 
