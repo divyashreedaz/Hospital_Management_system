@@ -19,12 +19,12 @@ function Bill() {
     var labtotal1 = 0;
     var phartotal = 0;
     var phartotal1 = 0;
-    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "", emrchr: "", emrqty: "" }]);
-    const [wardList, setWardList] = useState([{ warddate: "", wardservice: "", wardchr: "", wardqty: "" }]);
-    const [conList, setConList] = useState([{ condate: "", conservice: "", conchr: "", conqty: "" }]);
-    const [serList, setSerList] = useState([{ serdate: "", serservice: "", serchr: "", serqty: "" }]);
-    const [labList, setLabList] = useState([{ labdate: "", labservice: "", labchr: "", labqty: "" }]);
-    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "", pharqty: "" }]);
+    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "", emrchr: "0", emrqty: "0" }]);
+    const [wardList, setWardList] = useState([{ warddate: "", wardservice: "", wardchr: "0", wardqty: "0" }]);
+    const [conList, setConList] = useState([{ condate: "", conservice: "", conchr: "0", conqty: "0" }]);
+    const [serList, setSerList] = useState([{ serdate: "", serservice: "", serchr: "0", serqty: "0" }]);
+    const [labList, setLabList] = useState([{ labdate: "", labservice: "", labchr: "0", labqty: "0" }]);
+    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "0", pharqty: "0" }]);
     const [pername, setPerName] = useState('');
     const [perbill, setPerbill] = useState('');
     const [perip, setPerip] = useState('');
@@ -92,7 +92,7 @@ function Bill() {
     };
 
     const handleEmrAdd = () => {
-        setEmrList([...emrList, { emrdate: "", emrservice: "", emrchr: "", emrqty: "" }]);
+        setEmrList([...emrList, { emrdate: "", emrservice: "", emrchr: "0", emrqty: "0" }]);
     };
     const handleWardChange = (e, index) => {
         const { name, value } = e.target;
@@ -108,11 +108,11 @@ function Bill() {
     };
 
     const handleWardAdd = () => {
-        setWardList([...wardList, { warddate: "", wardservice: "", wardchr: "", wardqty: "" }]);
+        setWardList([...wardList, { warddate: "", wardservice: "", wardchr: "0", wardqty: "0" }]);
     };
     const handleConChange = (e, index) => {
         const { name, value } = e.target;
-        const list = [...wardList];
+        const list = [...conList];
         list[index][name] = value;
         setConList(list);
     };
@@ -124,7 +124,7 @@ function Bill() {
     };
 
     const handleConAdd = () => {
-        setConList([...conList, { condate: "", conservice: "", conchr: "", conqty: "" }]);
+        setConList([...conList, { condate: "", conservice: "", conchr: "0", conqty: "0" }]);
     };
     const handleSerChange = (e, index) => {
         const { name, value } = e.target;
@@ -140,7 +140,7 @@ function Bill() {
     };
 
     const handleSerAdd = () => {
-        setSerList([...serList, { serdate: "", serservice: "", serchr: "", serqty: "" }]);
+        setSerList([...serList, { serdate: "", serservice: "", serchr: "0", serqty: "0" }]);
     };
     const handleLabChange = (e, index) => {
         const { name, value } = e.target;
@@ -156,7 +156,7 @@ function Bill() {
     };
 
     const handleLabAdd = () => {
-        setLabList([...labList, { labdate: "", labservice: "", labchr: "", labqty: "" }]);
+        setLabList([...labList, { labdate: "", labservice: "", labchr: "0", labqty: "0" }]);
     };
     const handlePharChange = (e, index) => {
         const { name, value } = e.target;
@@ -172,7 +172,7 @@ function Bill() {
     };
 
     const handlePharAdd = () => {
-        setPharList([...pharList, { phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "", pharqty: "" }]);
+        setPharList([...pharList, { phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "0", pharqty: "0" }]);
     };
 
     {
@@ -915,10 +915,10 @@ function Bill() {
                 <br />
                 <div  >
                     <div class="print" ref={el => (componentRef = el)}>
-                        <div class="float-containerbl" style={{ marginTop: "10%" }}>
+                        <div class="float-containerbl" style={{ marginTop: "25%" }}>
 
-
-                            <div class="float-childbl" >
+<div style={{textAlign:"center",fontSize:"150%",fontWeight:"bold",marginBottom:"4%"}}>Discharge Breakup Bill</div>
+                            <div class="float-childbl" style={{marginLeft:"4%",marginRight:"5%"}} >
                                 <tr>
                                     <td>Patient Name</td>
                                     <td>:</td>
@@ -981,7 +981,7 @@ function Bill() {
 
                         </div>
                         <br />
-                        <div style={{ marginTop: "10%" }}>
+                        <div style={{ marginTop: "10%" ,marginLeft:"4%",marginRight:"4%"}}>
                             <div  >
                                 <table >
 
@@ -1000,9 +1000,11 @@ function Bill() {
                                     </tr>
 
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
+                                    <td colspan="5">
+                                        <div style={{ textDecoration: "underline" }}>
                                             EMR charges
                                         </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1078,7 +1080,8 @@ function Bill() {
                                         <td></td>
                                         <td>Sub Total:{total1}</td>
                                     </tr>
-                                    <tr><div style={{ textDecoration: "underline", marginLeft: "2%" }}>Ward Charges</div></tr>
+                                    <tr><td colspan="5"><div style={{ textDecoration: "underline" }}>Ward Charges</div>
+                                    </td></tr>
                                     <tr>
                                         <td>
                                             {wardList &&
@@ -1152,10 +1155,12 @@ function Bill() {
                                         <td> </td>
                                         <td>sub Total:{wardtotal1}</td>
                                     </tr>
-                                    <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
+                                    <tr >
+                                    <td colspan="5">
+                                        <div style={{ textDecoration: "underline" }}>
                                             Consultation charges
                                         </div>
+                                        </td>
                                     </tr>
 
                                     <tr>
@@ -1231,9 +1236,11 @@ function Bill() {
                                         <td>sub Total:{contotal1}</td>
                                     </tr>
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
+                                    <td colspan="2">
+                                        <div style={{ textDecoration: "underline"}}>
                                             Service charges
                                         </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1307,9 +1314,11 @@ function Bill() {
                                         <td>sub Total:{sertotal1}</td>
                                     </tr>
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
+                                    <td colspan="2">
+                                        <div style={{ textDecoration: "underline" }}>
                                             Laboratory charges
                                         </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1383,9 +1392,11 @@ function Bill() {
                                         <td>sub Total:{labtotal1}</td>
                                     </tr>
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
+                                    <td colspan="2">
+                                        <div style={{ textDecoration: "underline"}}>
                                             Pharmacy charges
                                         </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1481,7 +1492,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><hr /></td>
+                                        <td><hr style={{width:"80%",marginLeft:"-10%"}}></hr></td>
                                     </tr>
 
 
