@@ -1532,7 +1532,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>balance Due:{(total1 + wardtotal1 + contotal1 + sertotal1 + labtotal1 + phartotal1)-(advance)-(discount)}</td>
+                                        <td>Total Amount:{(total1 + wardtotal1 + contotal1 + sertotal1 + labtotal1 + phartotal1)-(advance)-(discount)}</td>
                                     </tr>
                                 </table>
 
