@@ -7,14 +7,14 @@
   
   .boxhome1 {
     margin-left: 10%;
-    grid-column-start: 4;
+    grid-column-start: 3;
     grid-column-end: 9;
     grid-row-start: 1;
     grid-row-end: 3;
 
   }
   .boxhome3 {
-    grid-column-start: 10;
+    grid-column-start: 11;
     grid-column-end:15;
     grid-row-start: 1;
     grid-row-end: 3;

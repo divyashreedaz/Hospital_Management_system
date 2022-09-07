@@ -9,12 +9,12 @@ class Homepage extends Component {
         return (
             <div>
                 <Navbar />
-                <div class="wrapperhome">
-                    <div class="boxhome1" >
-                        <a href="/Certificates" class="button">VENDOR</a>
+                <div className="wrapperhome">
+                    <div className="boxhome1" >
+                        <a href="/Certificates" className="button">VENDOR</a>
                     </div>
-                    <div class="boxhome3">
-                    <a href="/Bill" class="button">PATIENT</a>
+                    <div className="boxhome3">
+                    <a href="/Bill" className="button">PATIENT</a>
                     </div>
                     
                     
