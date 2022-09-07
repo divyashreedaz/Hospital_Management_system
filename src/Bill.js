@@ -146,7 +146,7 @@ function Bill() {
     };
     const handleConChange = (e, index) => {
         const { name, value } = e.target;
-        const list = [...wardList];
+        const list = [...conList];
         list[index][name] = value;
         if(name=="conservice"&&value=="ER")
         {
