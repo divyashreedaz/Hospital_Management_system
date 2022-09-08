@@ -8,6 +8,9 @@
     border-radius: 5px;
     border: 1px solid rgb(220, 220, 220);
   } */
+  body{
+    height: 60%;
+  }
 
   input:focus {
     border: 1px solid rgb(0, 208, 255);
@@ -76,8 +79,7 @@
   }
   
   .print{
-    border: 1px solid #0f100f;
-    min-height: 98vh;
+    margin-bottom:30% ;
   }
   .float-containerbl {
     padding: 1px;
@@ -101,5 +103,9 @@
   }
   th,td{
     padding-right: 10px;
+  
+  }
+  #tablecontent{
+    text-align: center;
   }
  
