@@ -1,0 +1,23 @@
+.btnstyle
+{
+
+        padding: 7px 10px;
+        border: 2px solid #542ea1;
+        background-color: #823fd3;
+        font-family: inherit;
+        margin: 20px 0;
+        border-radius: 10px;
+        cursor: pointer;
+        color: aliceblue;
+        font-size: 120%;
+    
+}
+
+#input1,#input2{
+    font-family: inherit;
+    padding: 10px;
+    width: 40%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}

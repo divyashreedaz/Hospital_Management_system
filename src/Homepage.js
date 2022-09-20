@@ -16,6 +16,9 @@ class Homepage extends Component {
                     <div className="boxhome3">
                     <a href="/Bill" className="button">PATIENT</a>
                     </div>
+                    <div class="boxhome4">
+                    <a href="/pharmacyform" class="button">PHARMACY</a>
+                    </div>
                     
                     
                 </div>
