@@ -24,24 +24,26 @@ function Bill() {
         fetchData();
     }, [])
     let componentRef = useRef(null);
-    var total = 0;
+    let componentphar = useRef(null);
+    let componentlab = useRef(null);
     var total1 = 0;
-    var wardtotal = 0;
+    var total= 0;
     var wardtotal1 = 0;
-    var contotal = 0;
+    var wardtotal = 0;
     var contotal1 = 0;
-    var sertotal = 0;
+    var contotal = 0;
     var sertotal1 = 0;
-    var labtotal = 0;
+    var sertotal = 0;
     var labtotal1 = 0;
-    var phartotal = 0;
+    var labtotal = 0;
     var phartotal1 = 0;
+    var phartotal = 0;
     const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "ER", emrbatch: "", emrexp: "", emrchr: "4000", emrqty: "1" }]);
     const [wardList, setWardList] = useState([{ warddate: "", wardservice: "ER", wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
     const [conList, setConList] = useState([{ condate: "", conservice: "ER", conbatch: "", conexp: "", conchr: "4000", conqty: "1" }]);
     const [serList, setSerList] = useState([{ serdate: "", serservice: "ER", serbatch: "", serexp: "", serchr: "4000", serqty: "1" }]);
     const [labList, setLabList] = useState([{ labdate: "", labservice: "ER", labbatch: "", labexp: "", labchr: "4000", labqty: "1" }]);
-    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "ER", pharbatch: "", pharexp: "", pharchr: "590", pharqty: "1" }]);
+    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "590", pharqty: "1" }]);
     const [pername, setPerName] = useState('');
     const [perbill, setPerbill] = useState('');
     const [perip, setPerip] = useState('');
@@ -114,10 +116,6 @@ function Bill() {
         }
 
         setEmrList(list);
-        // if(name=="wardservice"&&value=="Ms")
-        // {
-        //     setEmrList([ {emrservice: "Ms", emrchr: "", emrqty: "" }]);
-        // }
     };
 
     const handleEmrRemove = (index) => {
@@ -253,21 +251,6 @@ function Bill() {
                 }
             })
         }
-        //  if(name=="pharservice"&&value=="ER")
-        //  {
-        //     list[index][name]="ER"
-        //     list[index]["pharchr"]="4000"
-        //  }
-        //  else if(name=="pharservice"&&value=="ICU")
-        //  {
-        //     list[index][name]="ICU"
-        //     list[index]["pharchr"]="40000"
-        //  }
-        //  else if(name=="pharservice"&&value=="GENERAL WARD"){
-        //     list[index][name]="GENERAL WARD"
-        //     list[index]["pharchr"]="100"
-        //  }
-
         setPharList(list);
     };
 
@@ -287,10 +270,7 @@ function Bill() {
                 <div key={index}>
 
                     {total1 += parseInt(value.emrchr) * parseInt(value.emrqty)}
-
-
                 </div>
-
             ))
     }
     {
@@ -311,10 +291,7 @@ function Bill() {
                 <div key={index}>
 
                     {contotal1 += parseInt(value.conchr) * parseInt(value.conqty)}
-
-
                 </div>
-
             ))
     }
     {
@@ -323,10 +300,7 @@ function Bill() {
                 <div key={index}>
 
                     {sertotal1 += parseInt(value.serchr) * parseInt(value.serqty)}
-
-
                 </div>
-
             ))
     }
     {
@@ -335,10 +309,7 @@ function Bill() {
                 <div key={index}>
 
                     {labtotal1 += parseInt(value.labchr) * parseInt(value.labqty)}
-
-
                 </div>
-
             ))
     }
     {
@@ -347,25 +318,17 @@ function Bill() {
                 <div key={index}>
 
                     {phartotal1 += parseInt(value.pharchr) * parseInt(value.pharqty)}
-
-
                 </div>
-
             ))
     }
     return (
         <div>
             <Navbar />
             <div>
-
                 <form className="App" autoComplete="off">
-
                     <div className="form-field">
                         <div class="float-containerbl" >
-
-
-                            <div class="float-childbl" >
-
+                          <div class="float-childbl" >
                                 <div>
                                     <tr hidden>
                                         <td>N</td><td> <div style={{ marginLeft: "630%" }}>:</div></td><td>
@@ -515,14 +478,7 @@ function Bill() {
                                             <option default value="ER">ER</option>
                                             <option value="ICU">ICU</option>
                                             <option value="GENERAL WARD">General Ward</option>
-
-
-
-
-
                                         </select>
-
-
                                     </div>
                                     <div>
                                         <p>Batch No.</p>
@@ -640,8 +596,6 @@ function Bill() {
                                             required
                                         />
                                     </div>
-
-
                                     <div>
                                         <p>Charges</p>
                                         <input
@@ -666,8 +620,6 @@ function Bill() {
                                             required
                                         />
                                     </div>
-
-
                                     {wardList.length - 1 === index && (
                                         <button
                                             type="button"
@@ -881,9 +833,7 @@ function Bill() {
                                             <span>Remove</span>
                                         </button>
                                     )}
-
                                 </div>
-
                             </div>
                         ))}
                         <label htmlFor="service" style={{ textDecoration: "underline", fontWeight: "bold" }}>Laboratory charges</label>
@@ -955,8 +905,6 @@ function Bill() {
                                             required
                                         />
                                     </div>
-
-
                                     {labList.length - 1 === index && (
                                         <button
                                             type="button"
@@ -1054,8 +1002,6 @@ function Bill() {
                                             required
                                         />
                                     </div>
-
-
                                     {pharList.length - 1 === index && (
                                         <button
                                             type="button"
@@ -1107,18 +1053,30 @@ function Bill() {
                                 />
                                 </div></td>
                         </tr>
-
-
                         <br></br>
-
                         <ReactToPrint
                             trigger={() => {
                                 return <button>Print the bill</button>
-
                             }
                             }
                             content={() => componentRef}
+                        />
+                        <ReactToPrint
+                            trigger={() => {
+                                return <button style={{ marginLeft: "2%" }}>Print the pharmacy bill</button>
 
+                            }
+                            }
+                            content={() => componentphar}
+
+                        />
+                        <ReactToPrint
+                            trigger={() => {
+                                return <button style={{ marginLeft: "2%" }}>Print the lab bill</button>
+
+                            }
+                            }
+                            content={() => componentlab}
                         />
                     </div>
 
@@ -1197,12 +1155,8 @@ function Bill() {
                         <div style={{ marginTop: "10%" }}>
                             <div  >
                                 <table >
-
-
                                     <tr>
-
                                         <th>Date</th>
-
                                         <th >Service/Investigation</th>
                                         <th>Batch No.</th>
                                         <th>Exp.Dt</th>
@@ -1373,8 +1327,6 @@ function Bill() {
                                                     <div key={index}>
 
                                                         {<div>{wardtotal = parseInt(value.wardchr) * parseInt(value.wardqty)}</div>
-
-
                                                         }
 
                                                     </div>
@@ -1820,6 +1772,463 @@ function Bill() {
                     </div>
 
 
+                </div><br/><br/>
+
+                {/* ---------------------------pharmacy----------------------- */}
+
+                <div  >
+                    <div class="print" ref={el => (componentphar = el)}>
+                        <div class="float-containerbl" style={{ marginTop: "7%" }}>
+                            <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Pharmacy Bill</div>
+
+                            <div class="float-childbl" >
+                                <tr>
+                                    <td>Patient Name</td>
+                                    <td>:</td>
+                                    <td>{pername}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bill No</td>
+                                    <td>:</td>
+                                    <td>{perbill}</td>
+                                </tr>
+                                <tr>
+                                    <td>IP No</td>
+                                    <td>:</td>
+                                    <td>{perip}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        MR No
+                                    </td>
+                                    <td>
+                                        :
+                                    </td>
+                                    <td>{permr}</td>
+                                </tr>
+                                <tr>
+                                    <td>Consultant</td>
+                                    <td>:</td>
+                                    <td>{percon}</td>
+                                </tr>
+                            </div>
+
+                            <div class="float-child1bl">
+                                <tr>
+                                    <td>Age/Sex</td>
+                                    <td>:</td>
+                                    <td>{perage}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bill Date</td>
+                                    <td>:</td>
+                                    <td>{perbd}</td>
+                                </tr>
+                                <tr>
+                                    <td>Room No.</td>
+                                    <td>:</td>
+                                    <td>{perroom}</td>
+                                </tr>
+                                <tr>
+                                    <td>D.O.A & Time</td>
+                                    <td>:</td>
+                                    <td>{perdoa}</td>
+                                </tr>
+                                <tr>
+                                    <td>D.O.D & Time</td>
+                                    <td>:</td>
+                                    <td>{perdod}</td>
+                                </tr>
+
+                            </div>
+
+                        </div>
+                        <br />
+                        <div style={{ marginTop: "10%" }}>
+                            <div  >
+                                <table >
+
+
+                                    <tr>
+
+                                        <th>Date</th>
+
+                                        <th >Service/Investigation</th>
+                                        <th>Batch No.</th>
+                                        <th>Exp.Dt</th>
+                                        <th>Charges</th>
+                                        <th>Qty</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
+                                            Pharmacy charges
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {pharList &&
+                                                pharList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.phardate && value.phardate}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {pharList &&
+                                                pharList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.pharservice && value.pharservice}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {pharList &&
+                                                pharList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.pharbatch && value.pharbatch}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {pharList &&
+                                                pharList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.pharexp && value.pharexp}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {pharList &&
+                                                pharList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.pharchr && value.pharchr}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {pharList &&
+                                                pharList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.pharqty && value.pharqty}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {pharList &&
+                                                pharList.map((value, index) => (
+                                                    <div key={index}>
+
+                                                        {<div>{phartotal = parseInt(value.pharchr) * parseInt(value.pharqty)}</div>
+
+
+                                                        }
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>sub Total:{phartotal1}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><hr /></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total:{phartotal1}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total Advance Paid:{advance}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Discount Amount:{discount}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>balance Due:{(phartotal1) - (advance) - (discount)}</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div><br/><br/>
+                {/* 
+                -------------------------------lab-------------------------- */}
+
+                <div  >
+                    <div class="print" ref={el => (componentlab = el)}>
+                        <div class="float-containerbl" style={{ marginTop: "7%" }}>
+                            <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Laboratory Bill</div>
+
+                            <div class="float-childbl" >
+                                <tr>
+                                    <td>Patient Name</td>
+                                    <td>:</td>
+                                    <td>{pername}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bill No</td>
+                                    <td>:</td>
+                                    <td>{perbill}</td>
+                                </tr>
+                                <tr>
+                                    <td>IP No</td>
+                                    <td>:</td>
+                                    <td>{perip}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        MR No
+                                    </td>
+                                    <td>
+                                        :
+                                    </td>
+                                    <td>{permr}</td>
+                                </tr>
+                                <tr>
+                                    <td>Consultant</td>
+                                    <td>:</td>
+                                    <td>{percon}</td>
+                                </tr>
+                            </div>
+
+                            <div class="float-child1bl">
+                                <tr>
+                                    <td>Age/Sex</td>
+                                    <td>:</td>
+                                    <td>{perage}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bill Date</td>
+                                    <td>:</td>
+                                    <td>{perbd}</td>
+                                </tr>
+                                <tr>
+                                    <td>Room No.</td>
+                                    <td>:</td>
+                                    <td>{perroom}</td>
+                                </tr>
+                                <tr>
+                                    <td>D.O.A & Time</td>
+                                    <td>:</td>
+                                    <td>{perdoa}</td>
+                                </tr>
+                                <tr>
+                                    <td>D.O.D & Time</td>
+                                    <td>:</td>
+                                    <td>{perdod}</td>
+                                </tr>
+
+                            </div>
+
+                        </div>
+                        <br />
+                        <div style={{ marginTop: "10%" }}>
+                            <div  >
+                                <table >
+ <tr>
+
+                                        <th>Date</th>
+                                        <th >Service/Investigation</th>
+                                        <th>Batch No.</th>
+                                        <th>Exp.Dt</th>
+                                        <th>Charges</th>
+                                        <th>Qty</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    <tr>
+                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
+                                            Laboratory charges
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {labList &&
+                                                labList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.labdate && value.labdate}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {labList &&
+                                                labList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.labservice && value.labservice}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {labList &&
+                                                labList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.labbatch && value.labbatch}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td> {labList &&
+                                            labList.map((value, index) => (
+                                                <div key={index}>
+                                                    {value.labexp && value.labexp}
+
+                                                </div>
+
+                                            ))}
+
+                                        </td>
+                                        <td>
+                                            {labList &&
+                                                labList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.labchr && value.labchr}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {labList &&
+                                                labList.map((value, index) => (
+                                                    <div key={index}>
+                                                        {value.labqty && value.labqty}
+
+                                                    </div>
+
+                                                ))}
+                                        </td>
+                                        <td>
+                                            {labList &&
+                                                labList.map((value, index) => (
+                                                    <div key={index}>
+
+                                                        {<div>{labtotal = parseInt(value.labchr) * parseInt(value.labqty)}</div>
+
+
+                                                        }
+                                                    </div>
+
+                                                ))}
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>sub Total:{labtotal1}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><hr /></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total:{labtotal1}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total Advance Paid:{advance}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Discount Amount:{discount}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>balance Due:{(labtotal1) - (advance) - (discount)}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
