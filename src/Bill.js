@@ -450,7 +450,7 @@ function Bill() {
                                 <div>
                                     <tr><td>Bill Date</td><td><div style={{ marginLeft: "960%" }}>:</div></td><td><div style={{ marginLeft: "25%" }}><input
                                         name="perbd"
-                                        type="text"
+                                        type="date"
                                         id="perbd"
                                         value={perbd}
                                         onChange={(e) => handlebdChange(e)}
@@ -472,7 +472,7 @@ function Bill() {
                                     <td>D.O.A && Time</td><td>:</td>
                                     <td><input
                                         name="perdoa"
-                                        type="text"
+                                        type="datetime-local"
                                         id="perdoa"
                                         value={perdoa}
                                         onChange={(e) => handledoaChange(e)}
@@ -483,7 +483,7 @@ function Bill() {
                                 <div>
                                     <tr><td>D.O.D && Time</td><td>:</td><td><input
                                         name="perdod"
-                                        type="text"
+                                        type="datetime-local"
                                         id="perdod"
                                         value={perdod}
                                         onChange={(e) => handledodChange(e)}
@@ -502,7 +502,7 @@ function Bill() {
                                     <div>
                                         <p>Date</p><input
                                             name="emrdate"
-                                            type="text"
+                                            type="date"
                                             id="emrdate"
                                             value={value.emrdate}
                                             onChange={(e) => handleEmrChange(e, index)}
@@ -539,7 +539,7 @@ function Bill() {
                                         <p>Exp.Dt</p>
                                         <input
                                             name="emrexp"
-                                            type="text"
+                                            type="date"
                                             id="emrexp"
                                             value={value.emrexp}
                                             onChange={(e) => handleEmrChange(e, index)}
@@ -603,7 +603,7 @@ function Bill() {
                                     <div>
                                         <p>Date</p><input
                                             name="warddate"
-                                            type="text"
+                                            type="date"
                                             id="warddate"
                                             value={value.warddate}
                                             onChange={(e) => handleWardChange(e, index)}
@@ -633,7 +633,7 @@ function Bill() {
                                         <p>Exp.Dt</p>
                                         <input
                                             name="wardexp"
-                                            type="text"
+                                            type="date"
                                             id="wardexp"
                                             value={value.wardexp}
                                             onChange={(e) => handleWardChange(e, index)}
@@ -699,7 +699,7 @@ function Bill() {
                                     <div>
                                         <p>Date</p><input
                                             name="condate"
-                                            type="text"
+                                            type="date"
                                             id="condate"
                                             value={value.condate}
                                             onChange={(e) => handleConChange(e, index)}
@@ -729,7 +729,7 @@ function Bill() {
                                         <p>Exp.Dt</p>
                                         <input
                                             name="conexp"
-                                            type="text"
+                                            type="date"
                                             id="conexp"
                                             value={value.conexp}
                                             onChange={(e) => handleConChange(e, index)}
@@ -796,7 +796,7 @@ function Bill() {
                                     <div>
                                         <p>Date</p><input
                                             name="serdate"
-                                            type="text"
+                                            type="date"
                                             id="serdate"
                                             value={value.serdate}
                                             onChange={(e) => handleSerChange(e, index)}
@@ -826,7 +826,7 @@ function Bill() {
                                         <p>Exp.Dt</p>
                                         <input
                                             name="serexp"
-                                            type="text"
+                                            type="date"
                                             id="serexp"
                                             value={value.serexp}
                                             onChange={(e) => handleSerChange(e, index)}
@@ -893,7 +893,7 @@ function Bill() {
                                     <div>
                                         <p>Date</p><input
                                             name="labdate"
-                                            type="text"
+                                            type="date"
                                             id="labdate"
                                             value={value.labdate}
                                             onChange={(e) => handleLabChange(e, index)}
@@ -923,7 +923,7 @@ function Bill() {
                                         <p>Exp.Dt</p>
                                         <input
                                             name="labexp"
-                                            type="text"
+                                            type="date"
                                             id="labexp"
                                             value={value.labexp}
                                             onChange={(e) => handleLabChange(e, index)}
@@ -989,7 +989,7 @@ function Bill() {
                                     <div>
                                         <p>Date</p><input
                                             name="phardate"
-                                            type="text"
+                                            type="date"
                                             id="phardate"
                                             value={value.phardate}
                                             onChange={(e) => handlePharChange(e, index)}
@@ -1023,7 +1023,7 @@ function Bill() {
                                         <p>Exp.Dt</p>
                                         <input
                                             name="pharexp"
-                                            type="text"
+                                            type="date"
                                             id="pharexp"
                                             value={value.pharexp}
                                             onChange={(e) => handlePharChange(e, index)}
