@@ -10,7 +10,7 @@ function Bill() {
     const [phardata, setphardata] = React.useState([]);
     async function fetchData() {
         try {
-            const data = await axios.get('http://3.15.23.112:8081/pharmacy')
+            const data = await axios.get('http://18.220.4.67:8081/pharmacy')
             setphardata(data.data)
 
             console.log(data.data)
