@@ -4,30 +4,29 @@ import "./Bill.css";
 import ReactToPrint from "react-to-print";
 import axios from 'axios'
 import Navbar from "./Navbar/Navbar";
-
-//import phardata from "./phardata.json";
+import phardata from "./phardata.json";
 function Bill() {
-    const [phardata, setphardata] = React.useState([]);
-    async function fetchData() {
-        try {
-            const data = await axios.get('http://18.220.4.67:8081/pharmacy')
-            setphardata(data.data)
+    // const [phardata, setphardata] = React.useState([]);
+    // async function fetchData() {
+    //     try {
+    //         const data = await axios.get('http://18.220.4.67:8081/pharmacy')
+    //         setphardata(data.data)
 
-            console.log(data.data)
+    //         console.log(data.data)
 
-        } catch (error) {
-            console.log(error);
+    //     } catch (error) {
+    //         console.log(error);
 
-        }
-    }
-    useEffect(() => {
-        fetchData();
-    }, [])
+    //     }
+    // }
+    // useEffect(() => {
+    //     fetchData();
+    // }, [])
     let componentRef = useRef(null);
     let componentphar = useRef(null);
     let componentlab = useRef(null);
     var total1 = 0;
-    var total= 0;
+    var total = 0;
     var wardtotal1 = 0;
     var wardtotal = 0;
     var contotal1 = 0;
@@ -328,7 +327,7 @@ function Bill() {
                 <form className="App" autoComplete="off">
                     <div className="form-field">
                         <div class="float-containerbl" >
-                          <div class="float-childbl" >
+                            <div class="float-childbl" >
                                 <div>
                                     <tr hidden>
                                         <td>N</td><td> <div style={{ marginLeft: "630%" }}>:</div></td><td>
@@ -852,7 +851,7 @@ function Bill() {
                                     </div>
                                     <div>
                                         <p>Service</p>
-                                        <select name="labservice" id="labservice" onChange={(e) => handleLabChange(e, index)}>
+                                        <select name="labservice" id="labservice" onInput onChange={(e) => handleLabChange(e, index)}>
                                             <option default value="ER">ER</option>
                                             <option value="ICU">ICU</option>
                                             <option value="GENERAL WARD">General Ward</option>
@@ -945,8 +944,9 @@ function Bill() {
                                         />
                                     </div>
                                     <div>
-                                        <p>Service</p>
-                                        <select name="pharservice" id="pharservice" onChange={(e) => handlePharChange(e, index)}>
+                                        <p>input</p>
+                                        <input list="prodname" name="pharservice" id="productName" onChange={(e) => handlePharChange(e, index)} />
+                                        <datalist id="prodname">
                                             {phardata.map((info) => {
 
                                                 return (
@@ -955,7 +955,8 @@ function Bill() {
 
                                             })}
 
-                                        </select>
+                                        </datalist>
+
                                     </div>
                                     <div>
                                         <p>Batch No.</p><input
@@ -1085,8 +1086,8 @@ function Bill() {
                 </form>
                 <br />
                 <div  >
-                    <div class="print" ref={el => (componentRef = el)}>
-                        <div class="float-containerbl" style={{ marginTop: "7%" }}>
+                    <div class="print" ref={el => (componentRef = el)} style={{ marginTop: "25%" }}>
+                    <div class="float-containerbl" style={{ marginTop: "25%" }}>
                             <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Discharge Breakup Bill</div>
 
                             <div class="float-childbl" >
@@ -1772,13 +1773,13 @@ function Bill() {
                     </div>
 
 
-                </div><br/><br/>
+                </div><br /><br />
 
                 {/* ---------------------------pharmacy----------------------- */}
 
                 <div  >
                     <div class="print" ref={el => (componentphar = el)}>
-                        <div class="float-containerbl" style={{ marginTop: "7%" }}>
+                    <div class="float-containerbl" style={{ marginTop: "25%" }}>
                             <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Pharmacy Bill</div>
 
                             <div class="float-childbl" >
@@ -1932,8 +1933,6 @@ function Bill() {
                                                     <div key={index}>
 
                                                         {<div>{phartotal = parseInt(value.pharchr) * parseInt(value.pharqty)}</div>
-
-
                                                         }
 
                                                     </div>
@@ -2003,13 +2002,13 @@ function Bill() {
                             </div>
                         </div>
                     </div>
-                </div><br/><br/>
+                </div><br /><br />
                 {/* 
                 -------------------------------lab-------------------------- */}
 
                 <div  >
                     <div class="print" ref={el => (componentlab = el)}>
-                        <div class="float-containerbl" style={{ marginTop: "7%" }}>
+                    <div class="float-containerbl" style={{ marginTop: "25%" }}>
                             <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Laboratory Bill</div>
 
                             <div class="float-childbl" >
@@ -2078,7 +2077,7 @@ function Bill() {
                         <div style={{ marginTop: "10%" }}>
                             <div  >
                                 <table >
- <tr>
+                                    <tr>
 
                                         <th>Date</th>
                                         <th >Service/Investigation</th>
