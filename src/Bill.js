@@ -1720,7 +1720,8 @@ function Bill() {
                                         <td><hr /></td>
                                     </tr>
 
-
+                                    <thead><br/><br/><br/></thead>
+<br/><br/>
 
                                     <tr>
                                         <td></td>
@@ -1759,6 +1760,7 @@ function Bill() {
                                         <td></td>
                                         <td>balance Due:{(total1 + wardtotal1 + contotal1 + sertotal1 + labtotal1 + phartotal1) - (advance) - (discount)}</td>
                                     </tr>
+                                    <tfoot><br/><br/><br/><br/><br/><br/></tfoot>
                                 </table>
 
                             </div>
@@ -1960,6 +1962,8 @@ function Bill() {
                                         <td></td>
                                         <td><hr /></td>
                                     </tr>
+                                    <thead><br/><br/><br/></thead>
+<br/><br/>
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -1997,6 +2001,7 @@ function Bill() {
                                         <td></td>
                                         <td>balance Due:{(phartotal1) - (advance) - (discount)}</td>
                                     </tr>
+                                    <tfoot><br/><br/><br/><br/><br/><br/></tfoot>
                                 </table>
 
                             </div>
@@ -2187,6 +2192,8 @@ function Bill() {
                                         <td></td>
                                         <td><hr /></td>
                                     </tr>
+                                    <thead><br/><br/><br/></thead>
+<br/><br/>
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -2224,6 +2231,7 @@ function Bill() {
                                         <td></td>
                                         <td>balance Due:{(labtotal1) - (advance) - (discount)}</td>
                                     </tr>
+                                    <tfoot><br/><br/><br/><br/><br/><br/></tfoot>
                                 </table>
                             </div>
                         </div>
