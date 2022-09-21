@@ -37,12 +37,12 @@ function Bill() {
     var labtotal = 0;
     var phartotal1 = 0;
     var phartotal = 0;
-    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "ER", emrbatch: "", emrexp: "", emrchr: "4000", emrqty: "1" }]);
+    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "Registration Details", emrbatch: "", emrexp: "", emrchr: "500", emrqty: "1" }]);
     const [wardList, setWardList] = useState([{ warddate: "", wardservice: "ER", wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
     const [conList, setConList] = useState([{ condate: "", conservice: "ER", conbatch: "", conexp: "", conchr: "4000", conqty: "1" }]);
     const [serList, setSerList] = useState([{ serdate: "", serservice: "ER", serbatch: "", serexp: "", serchr: "4000", serqty: "1" }]);
     const [labList, setLabList] = useState([{ labdate: "", labservice: "ER", labbatch: "", labexp: "", labchr: "4000", labqty: "1" }]);
-    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "590", pharqty: "1" }]);
+    const [pharList, setPharList] = useState([{ phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "0", pharqty: "1" }]);
     const [pername, setPerName] = useState('');
     const [perbill, setPerbill] = useState('');
     const [perip, setPerip] = useState('');
@@ -51,6 +51,8 @@ function Bill() {
     const [perage, setPerage] = useState('');
     const [perbd, setPerbd] = useState('');
     const [perroom, setPerroom] = useState('');
+    const [perdpt, setPerdpt] = useState('');
+    const [peradd, setPeradd] = useState('');
     const [perdoa, setPerdoa] = useState('');
     const [perdod, setPerdod] = useState('');
     const [perdummy, setPerdummy] = useState('');
@@ -70,6 +72,12 @@ function Bill() {
     };
     const handlebdChange = event => {
         setPerbd(event.target.value);
+    };
+    const handledptChange = event => {
+        setPerdpt(event.target.value);
+    };
+    const handleaddChange = event => {
+        setPeradd(event.target.value);
     };
     const handleroomChange = event => {
         setPerroom(event.target.value);
@@ -101,18 +109,11 @@ function Bill() {
         const list = [...emrList];
 
         list[index][name] = value;
-        if (name == "emrservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["emrchr"] = "4000"
+        if (name == "emrservice" && value == "Registration Details") {
+            list[index][name] = "Registration Details"
+            list[index]["emrchr"] = "500"
         }
-        else if (name == "emrservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["emrchr"] = "40000"
-        }
-        else if (name == "emrservice" && value == "GENERAL WARD") {
-            list[index][name] = "GENERAL WARD"
-            list[index]["emrchr"] = "100"
-        }
+       
 
         setEmrList(list);
     };
@@ -124,7 +125,7 @@ function Bill() {
     };
 
     const handleEmrAdd = () => {
-        setEmrList([...emrList, { emrdate: "", emrservice: "Mr", emrbatch: "", emrexp: "", emrchr: "4000", emrqty: "1" }]);
+        setEmrList([...emrList, { emrdate: "", emrservice: "Registration Details", emrbatch: "", emrexp: "", emrchr: "500", emrqty: "1" }]);
     };
     const handleWardChange = (e, index) => {
         const { name, value } = e.target;
@@ -268,7 +269,7 @@ function Bill() {
             emrList.map((value, index) => (
                 <div key={index}>
 
-                    {total1 += parseInt(value.emrchr) * parseInt(value.emrqty)}
+                    {total1 += parseFloat(value.emrchr) * parseFloat(value.emrqty)}
                 </div>
             ))
     }
@@ -277,7 +278,7 @@ function Bill() {
             wardList.map((value, index) => (
                 <div key={index}>
 
-                    {wardtotal1 += parseInt(value.wardchr) * parseInt(value.wardqty)}
+                    {wardtotal1 += parseFloat(value.wardchr) * parseFloat(value.wardqty)}
 
 
                 </div>
@@ -289,7 +290,7 @@ function Bill() {
             conList.map((value, index) => (
                 <div key={index}>
 
-                    {contotal1 += parseInt(value.conchr) * parseInt(value.conqty)}
+                    {contotal1 += parseFloat(value.conchr) * parseFloat(value.conqty)}
                 </div>
             ))
     }
@@ -298,7 +299,7 @@ function Bill() {
             serList.map((value, index) => (
                 <div key={index}>
 
-                    {sertotal1 += parseInt(value.serchr) * parseInt(value.serqty)}
+                    {sertotal1 += parseFloat(value.serchr) * parseFloat(value.serqty)}
                 </div>
             ))
     }
@@ -307,7 +308,7 @@ function Bill() {
             labList.map((value, index) => (
                 <div key={index}>
 
-                    {labtotal1 += parseInt(value.labchr) * parseInt(value.labqty)}
+                    {labtotal1 += parseFloat(value.labchr) * parseFloat(value.labqty)}
                 </div>
             ))
     }
@@ -316,7 +317,7 @@ function Bill() {
             pharList.map((value, index) => (
                 <div key={index}>
 
-                    {phartotal1 += parseInt(value.pharchr) * parseInt(value.pharqty)}
+                    {phartotal1 += parseFloat(value.pharchr) * parseFloat(value.pharqty)}
                 </div>
             ))
     }
@@ -396,6 +397,17 @@ function Bill() {
                                         required
                                     /></td>
                                     </tr></div>
+                                    <div>
+                                    <tr><td>Address</td><td><div style={{ marginLeft: "350%" }}>:</div></td><td><div style={{ marginLeft: "8%" }}><input
+                                        name="peradd"
+                                        type="text"
+                                        id="peradd"
+                                        value={peradd}
+                                        onChange={(e) => handleaddChange(e)}
+                                        required
+                                    /></div></td>
+                                    </tr></div>
+
                             </div>
 
                             <div class="float-child1bl">
@@ -409,19 +421,20 @@ function Bill() {
                                         required
                                     /></div></td>
                                     </tr></div>
-                                <div>
-                                    <tr><td>Bill Date</td><td><div style={{ marginLeft: "960%" }}>:</div></td><td><div style={{ marginLeft: "25%" }}><input
+                                    <div><tr>
+                                    <td>Bill date</td><td><div style={{ marginLeft: "990%" }}>:</div></td>
+                                    <td><div style={{marginLeft:"28%"}}><input
                                         name="perbd"
-                                        type="date"
+                                        type="datetime-local"
                                         id="perbd"
-                                        value={perbd}
+                                        value={perdoa}
                                         onChange={(e) => handlebdChange(e)}
                                         required
-                                    />
-                                    </div></td>
-                                    </tr></div>
+                                    /></div>
+                                    </td></tr>
+                                </div>
                                 <div>
-                                    <tr><td>Room No.</td><td><div style={{ marginLeft: "870%" }}>:</div></td><td><div style={{ marginLeft: "22.5%" }}><input
+                                    <tr><td>Room No.</td><td><div style={{ marginLeft: "870%" }}>:</div></td><td><div style={{ marginLeft: "22%" }}><input
                                         name="perroom"
                                         type="text"
                                         id="perroom"
@@ -453,10 +466,20 @@ function Bill() {
                                     /></td>
                                     </tr></div>
 
+<div>
+                                    <tr><td>Department</td><td><div style={{ marginLeft: "480%" }}>:</div></td><td><div style={{ marginLeft: "11%" }}><input
+                                        name="perdpt"
+                                        type="text"
+                                        id="perdpt"
+                                        value={perdpt}
+                                        onChange={(e) => handledptChange(e)}
+                                        required
+                                    /></div></td>
+                                    </tr></div>
                             </div>
 
                         </div>
-                        <br />  <br />  <br />  <br />  <br /> <br />  <br />  <br />  <br />
+                        <br />  <br />  <br />  <br />  <br /> <br />  <br />  <br />  <br /><br/>
                         <label htmlFor="service" style={{ marginTop: "5%", textDecoration: "underline", fontWeight: "bold" }}>EMR charges</label>
                         {emrList.map((value, index) => (
                             <div key={index} className="services">
@@ -474,9 +497,8 @@ function Bill() {
                                     <div>
                                         <p>Service</p>
                                         <select name="emrservice" id="emrservice" onChange={(e) => handleEmrChange(e, index)}>
-                                            <option default value="ER">ER</option>
-                                            <option value="ICU">ICU</option>
-                                            <option value="GENERAL WARD">General Ward</option>
+                                            <option default value="Registration Details">Registration Details</option>
+                                          
                                         </select>
                                     </div>
                                     <div>
@@ -944,7 +966,7 @@ function Bill() {
                                         />
                                     </div>
                                     <div>
-                                        <p>input</p>
+                                        <p>Service</p>
                                         <input list="prodname" name="pharservice" id="productName" onChange={(e) => handlePharChange(e, index)} />
                                         <datalist id="prodname">
                                             {phardata.map((info) => {
@@ -1086,11 +1108,11 @@ function Bill() {
                 </form>
                 <br />
                 <div  >
-                    <div class="print" ref={el => (componentRef = el)} style={{ marginTop: "25%" }}>
-                    <div class="float-containerbl" style={{ marginTop: "25%" }}>
-                            <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Discharge Breakup Bill</div>
+                <div class="print" ref={el => (componentRef = el)}>
+                        <div class="float-containerbl" style={{ marginTop: "25%" }}>
 
-                            <div class="float-childbl" >
+                            <div style={{ textAlign: "center", fontSize: "150%", fontWeight: "bold", marginBottom: "4%" }}>Discharge Breakup Bill</div>
+                            <div class="float-childbl" style={{ marginLeft: "5%", marginRight: "5%" }} >
                                 <tr>
                                     <td>Patient Name</td>
                                     <td>:</td>
@@ -1120,6 +1142,11 @@ function Bill() {
                                     <td>:</td>
                                     <td>{percon}</td>
                                 </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>:</td>
+                                    <td>{peradd}</td>
+                                </tr>
                             </div>
 
                             <div class="float-child1bl">
@@ -1148,32 +1175,44 @@ function Bill() {
                                     <td>:</td>
                                     <td>{perdod}</td>
                                 </tr>
+                                <tr>
+                                    <td>Department</td>
+                                    <td>:</td>
+                                    <td>{perdpt}</td>
+                                </tr>
 
                             </div>
 
                         </div>
                         <br />
-                        <div style={{ marginTop: "10%" }}>
+                        <div style={{ marginTop: "10%", marginLeft: "5%", marginRight: "4%" }}>
                             <div  >
-                                <table >
+                                <table style={{fontSize:"90%"}}>
+
+
                                     <tr>
+
                                         <th>Date</th>
-                                        <th >Service/Investigation</th>
+
+                                        <th >Service/
+                                            <br />Investigation</th>
                                         <th>Batch No.</th>
                                         <th>Exp.Dt</th>
                                         <th>Charges</th>
-                                        <th>Qty</th>
+                                        <th>Quantity</th>
                                         <th>Amount</th>
 
                                     </tr>
 
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
-                                            EMR charges
-                                        </div>
+                                        <td colspan="5">
+                                            <div style={{ textDecoration: "underline" }}>
+                                                EMR charges
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td >
                                             {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
@@ -1193,27 +1232,13 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td> {emrList &&
-                                            emrList.map((value, index) => (
-                                                <div key={index}>
-                                                    {value.emrbatch && value.emrbatch}
-
-                                                </div>
-
-                                            ))}
+                                        <td >
 
                                         </td>
-                                        <td>
-                                            {emrList &&
-                                                emrList.map((value, index) => (
-                                                    <div key={index}>
-                                                        {value.emrexp && value.emrexp}
+                                        <td >
 
-                                                    </div>
-
-                                                ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
@@ -1223,7 +1248,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
@@ -1233,12 +1258,12 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td >
                                             {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{total = parseInt(value.emrchr) * parseInt(value.emrqty)}</div>
+                                                        {<div>{total = parseFloat(value.emrchr) * parseFloat(value.emrqty)}</div>
 
 
                                                         }
@@ -1258,11 +1283,12 @@ function Bill() {
                                         <td>  </td>
                                         <td>  </td>
                                         <td></td>
-                                        <td>Sub Total:{total1}</td>
+                                        <td style={{fontWeight:"bold"}}>Sub Total:{total1}</td>
                                     </tr>
-                                    <tr><div style={{ textDecoration: "underline", marginLeft: "2%" }}>Ward Charges</div></tr>
+                                    <tr><td colspan="5"><div style={{ textDecoration: "underline" }}>Ward Charges</div>
+                                    </td></tr>
                                     <tr>
-                                        <td>
+                                        <td >
                                             {wardList &&
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
@@ -1282,27 +1308,13 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>{wardList &&
-                                            wardList.map((value, index) => (
-                                                <div key={index}>
-                                                    {value.warbatch && value.wardbatch}
-
-                                                </div>
-
-                                            ))}
-
-                                        </td>
-                                        <td>{wardList &&
-                                            wardList.map((value, index) => (
-                                                <div key={index}>
-                                                    {value.wardexp && value.wardexp}
-
-                                                </div>
-
-                                            ))}
+                                        <td>
 
                                         </td>
                                         <td>
+
+                                        </td>
+                                        <td id="tablecontent">
                                             {wardList &&
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
@@ -1312,7 +1324,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {wardList &&
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
@@ -1327,7 +1339,9 @@ function Bill() {
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{wardtotal = parseInt(value.wardchr) * parseInt(value.wardqty)}</div>
+                                                        {<div>{wardtotal = parseFloat(value.wardchr) * parseFloat(value.wardqty)}</div>
+
+
                                                         }
 
                                                     </div>
@@ -1344,16 +1358,18 @@ function Bill() {
                                         <td> </td>
                                         <td> </td>
                                         <td> </td>
-                                        <td>sub Total:{wardtotal1}</td>
+                                        <td style={{fontWeight:"bold"}}>sub Total:{wardtotal1}</td>
                                     </tr>
-                                    <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
-                                            Consultation charges
-                                        </div>
+                                    <tr >
+                                        <td colSpan="5">
+                                            <div style={{ textDecoration: "underline" }}>
+                                                Consultation charges
+                                            </div>
+                                        </td>
                                     </tr>
 
                                     <tr>
-                                        <td>
+                                        <td >
                                             {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
@@ -1373,27 +1389,13 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>{conList &&
-                                            conList.map((value, index) => (
-                                                <div key={index}>
-                                                    {value.conbatch && value.conbatch}
-
-                                                </div>
-
-                                            ))}
+                                        <td >
 
                                         </td>
-                                        <td>
-                                            {conList &&
-                                                conList.map((value, index) => (
-                                                    <div key={index}>
-                                                        {value.conexp && value.conexp}
+                                        <td >
 
-                                                    </div>
-
-                                                ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
@@ -1403,7 +1405,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
@@ -1418,7 +1420,7 @@ function Bill() {
                                                 conList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{contotal = parseInt(value.conchr) * parseInt(value.conqty)}</div>
+                                                        {<div>{contotal = parseFloat(value.conchr) * parseFloat(value.conqty)}</div>
 
 
                                                         }
@@ -1436,12 +1438,14 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>sub Total:{contotal1}</td>
+                                        <td style={{fontWeight:"bold"}}>sub Total:{contotal1}</td>
                                     </tr>
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
-                                            Service charges
-                                        </div>
+                                        <td colspan="2">
+                                            <div style={{ textDecoration: "underline" }}>
+                                                Service charges
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1454,7 +1458,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td >
                                             {serList &&
                                                 serList.map((value, index) => (
                                                     <div key={index}>
@@ -1464,27 +1468,13 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
-                                            {serList &&
-                                                serList.map((value, index) => (
-                                                    <div key={index}>
-                                                        {value.serbatch && value.serbatch}
+                                        <td >
 
-                                                    </div>
-
-                                                ))}
                                         </td>
-                                        <td>
-                                            {serList &&
-                                                serList.map((value, index) => (
-                                                    <div key={index}>
-                                                        {value.serexp && value.serexp}
+                                        <td >
 
-                                                    </div>
-
-                                                ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {serList &&
                                                 serList.map((value, index) => (
                                                     <div key={index}>
@@ -1494,7 +1484,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {serList &&
                                                 serList.map((value, index) => (
                                                     <div key={index}>
@@ -1509,7 +1499,7 @@ function Bill() {
                                                 serList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{sertotal = parseInt(value.serchr) * parseInt(value.serqty)}</div>
+                                                        {<div>{sertotal = parseFloat(value.serchr) * parseFloat(value.serqty)}</div>
 
 
                                                         }
@@ -1526,12 +1516,14 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>sub Total:{sertotal1}</td>
+                                        <td style={{fontWeight:"bold"}}>sub Total:{sertotal1}</td>
                                     </tr>
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
-                                            Laboratory charges
-                                        </div>
+                                        <td colspan="2">
+                                            <div style={{ textDecoration: "underline" }}>
+                                                Laboratory charges
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1555,26 +1547,12 @@ function Bill() {
                                                 ))}
                                         </td>
                                         <td>
-                                            {labList &&
-                                                labList.map((value, index) => (
-                                                    <div key={index}>
-                                                        {value.labbatch && value.labbatch}
-
-                                                    </div>
-
-                                                ))}
-                                        </td>
-                                        <td> {labList &&
-                                            labList.map((value, index) => (
-                                                <div key={index}>
-                                                    {value.labexp && value.labexp}
-
-                                                </div>
-
-                                            ))}
 
                                         </td>
                                         <td>
+
+                                        </td>
+                                        <td id="tablecontent">
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
@@ -1584,7 +1562,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
@@ -1599,7 +1577,7 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{labtotal = parseInt(value.labchr) * parseInt(value.labqty)}</div>
+                                                        {<div>{labtotal = parseFloat(value.labchr) * parseFloat(value.labqty)}</div>
 
 
                                                         }
@@ -1616,12 +1594,14 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>sub Total:{labtotal1}</td>
+                                        <td style={{fontWeight:"bold"}}>sub Total:{labtotal1}</td>
                                     </tr>
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
-                                            Pharmacy charges
-                                        </div>
+                                        <td colspan="2">
+                                            <div style={{ textDecoration: "underline" }}>
+                                                Pharmacy charges
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1664,7 +1644,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
@@ -1674,7 +1654,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
@@ -1689,7 +1669,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{phartotal = parseInt(value.pharchr) * parseInt(value.pharqty)}</div>
+                                                        {<div>{phartotal = parseFloat(value.pharchr) * parseFloat(value.pharqty)}</div>
 
 
                                                         }
@@ -1707,7 +1687,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>sub Total:{phartotal1}</td>
+                                        <td style={{fontWeight:"bold"}} >sub Total:{phartotal1}</td>
                                     </tr>
 
                                     <tr>
@@ -1717,11 +1697,39 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><hr /></td>
+                                        <td><hr style={{ width: "80%", marginLeft: "-10%" }}></hr></td>
                                     </tr>
 
-                                    <thead><br/><br/><br/></thead>
-<br/><br/>
+
+                                    <thead><br /><br /><br /></thead>
+                                    <br /><br />
+                                    <tr style={{ marginTop: "5%" }}>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td ><td style={{ fontWeight: "bold" }}>Total</td><td>:</td><td style={{ fontWeight: "bold" }}>{total1 + wardtotal1 + contotal1 + sertotal1 + labtotal1 + phartotal1}</td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Advance Paid</td><td>:</td><td style={{ fontWeight: "bold" }}>{advance}</td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Discount Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{discount}</td></td>
+                                    </tr>
 
                                     <tr>
                                         <td></td>
@@ -1730,37 +1738,9 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>Total:{total1 + wardtotal1 + contotal1 + sertotal1 + labtotal1 + phartotal1}</td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{(total1 + wardtotal1 + contotal1 + sertotal1 + labtotal1 + phartotal1) - (advance) - (discount)}</td></td>
                                     </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total Advance Paid:{advance}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Discount Amount:{discount}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>balance Due:{(total1 + wardtotal1 + contotal1 + sertotal1 + labtotal1 + phartotal1) - (advance) - (discount)}</td>
-                                    </tr>
-                                    <tfoot><br/><br/><br/><br/><br/><br/></tfoot>
+                                    <tfoot><br /><br /><br /><br /><br /><br /></tfoot>
                                 </table>
 
                             </div>
@@ -1780,11 +1760,11 @@ function Bill() {
                 {/* ---------------------------pharmacy----------------------- */}
 
                 <div  >
-                    <div class="print" ref={el => (componentphar = el)}>
-                    <div class="float-containerbl" style={{ marginTop: "25%" }}>
-                            <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Pharmacy Bill</div>
+                <div class="print" ref={el => (componentphar = el)}>
+                        <div class="float-containerbl" style={{ marginTop: "25%" }}>
 
-                            <div class="float-childbl" >
+                            <div style={{ textAlign: "center", fontSize: "150%", fontWeight: "bold", marginBottom: "4%" }}>Pharmacy Bill</div>
+                            <div class="float-childbl" style={{ marginLeft: "5%", marginRight: "2%" }} >
                                 <tr>
                                     <td>Patient Name</td>
                                     <td>:</td>
@@ -1814,6 +1794,11 @@ function Bill() {
                                     <td>:</td>
                                     <td>{percon}</td>
                                 </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>:</td>
+                                    <td>{peradd}</td>
+                                </tr>
                             </div>
 
                             <div class="float-child1bl">
@@ -1842,12 +1827,17 @@ function Bill() {
                                     <td>:</td>
                                     <td>{perdod}</td>
                                 </tr>
+                                <tr>
+                                    <td>Department</td>
+                                    <td>:</td>
+                                    <td>{perdpt}</td>
+                                </tr>
 
                             </div>
 
                         </div>
                         <br />
-                        <div style={{ marginTop: "10%" }}>
+                        <div style={{ marginTop: "10%", marginLeft: "5%", marginRight: "4%" }}>
                             <div  >
                                 <table >
 
@@ -1856,17 +1846,23 @@ function Bill() {
 
                                         <th>Date</th>
 
-                                        <th >Service/Investigation</th>
+                                        <th >Service/
+                                            <br />Investigation</th>
                                         <th>Batch No.</th>
                                         <th>Exp.Dt</th>
                                         <th>Charges</th>
-                                        <th>Qty</th>
+                                        <th>Quantity</th>
                                         <th>Amount</th>
+
                                     </tr>
+
+                                    
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
-                                            Pharmacy charges
-                                        </div>
+                                        <td colspan="2">
+                                            <div style={{ textDecoration: "underline" }}>
+                                                Pharmacy charges
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -1909,7 +1905,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
@@ -1919,7 +1915,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
@@ -1934,7 +1930,9 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{phartotal = parseInt(value.pharchr) * parseInt(value.pharqty)}</div>
+                                                        {<div>{phartotal = parseFloat(value.pharchr) * parseFloat(value.pharqty)}</div>
+
+
                                                         }
 
                                                     </div>
@@ -1950,7 +1948,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>sub Total:{phartotal1}</td>
+                                        <td style={{fontWeight:"bold"}}>sub Total:{phartotal1}</td>
                                     </tr>
 
                                     <tr>
@@ -1960,27 +1958,20 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><hr /></td>
+                                        <td><hr style={{ width: "80%", marginLeft: "-10%" }}></hr></td>
                                     </tr>
-                                    <thead><br/><br/><br/></thead>
-<br/><br/>
-                                    <tr>
+
+
+                                    <thead><br /><br /><br /></thead>
+                                    <br /><br />
+                                    <tr style={{ marginTop: "5%" }}>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>Total:{phartotal1}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total Advance Paid:{advance}</td>
+                                        <td ><td style={{ fontWeight: "bold" }}>Total</td><td>:</td><td style={{ fontWeight: "bold" }}>{phartotal1}</td></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -1989,7 +1980,16 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>Discount Amount:{discount}</td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Advance Paid</td><td>:</td><td style={{ fontWeight: "bold" }}>{advance}</td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Discount Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{discount}</td></td>
                                     </tr>
 
                                     <tr>
@@ -1999,24 +1999,31 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>balance Due:{(phartotal1) - (advance) - (discount)}</td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{( phartotal1) - (advance) - (discount)}</td></td>
                                     </tr>
-                                    <tfoot><br/><br/><br/><br/><br/><br/></tfoot>
+                                    <tfoot><br /><br /><br /><br /><br /><br /></tfoot>
                                 </table>
 
                             </div>
+
+
                         </div>
+
+
+
+
+
                     </div>
                 </div><br /><br />
                 {/* 
                 -------------------------------lab-------------------------- */}
 
                 <div  >
-                    <div class="print" ref={el => (componentlab = el)}>
-                    <div class="float-containerbl" style={{ marginTop: "25%" }}>
-                            <div style={{ alignItems: "center", textAlign: "center", marginBottom: "4%", fontSize: "150%", textDecoration: "underline", fontWeight: "bold" }}> Laboratory Bill</div>
+                <div class="print" ref={el => (componentlab = el)}>
+                        <div class="float-containerbl" style={{ marginTop: "25%" }}>
 
-                            <div class="float-childbl" >
+                            <div style={{ textAlign: "center", fontSize: "150%", fontWeight: "bold", marginBottom: "4%" }}>Laboratory Bill</div>
+                            <div class="float-childbl" style={{ marginLeft: "5%", marginRight: "5%" }} >
                                 <tr>
                                     <td>Patient Name</td>
                                     <td>:</td>
@@ -2046,6 +2053,11 @@ function Bill() {
                                     <td>:</td>
                                     <td>{percon}</td>
                                 </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>:</td>
+                                    <td>{peradd}</td>
+                                </tr>
                             </div>
 
                             <div class="float-child1bl">
@@ -2074,28 +2086,40 @@ function Bill() {
                                     <td>:</td>
                                     <td>{perdod}</td>
                                 </tr>
+                                <tr>
+                                    <td>Department</td>
+                                    <td>:</td>
+                                    <td>{perdpt}</td>
+                                </tr>
 
                             </div>
 
                         </div>
                         <br />
-                        <div style={{ marginTop: "10%" }}>
+                        <div style={{ marginTop: "10%", marginLeft: "5%", marginRight: "4%" }}>
                             <div  >
                                 <table >
+
+
                                     <tr>
 
                                         <th>Date</th>
-                                        <th >Service/Investigation</th>
+
+                                        <th >Service/
+                                            <br />Investigation</th>
                                         <th>Batch No.</th>
                                         <th>Exp.Dt</th>
                                         <th>Charges</th>
-                                        <th>Qty</th>
+                                        <th>Quantity</th>
                                         <th>Amount</th>
+
                                     </tr>
                                     <tr>
-                                        <div style={{ textDecoration: "underline", marginLeft: "2%" }}>
-                                            Laboratory charges
-                                        </div>
+                                        <td colspan="2">
+                                            <div style={{ textDecoration: "underline" }}>
+                                                Laboratory charges
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -2119,26 +2143,12 @@ function Bill() {
                                                 ))}
                                         </td>
                                         <td>
-                                            {labList &&
-                                                labList.map((value, index) => (
-                                                    <div key={index}>
-                                                        {value.labbatch && value.labbatch}
-
-                                                    </div>
-
-                                                ))}
-                                        </td>
-                                        <td> {labList &&
-                                            labList.map((value, index) => (
-                                                <div key={index}>
-                                                    {value.labexp && value.labexp}
-
-                                                </div>
-
-                                            ))}
 
                                         </td>
                                         <td>
+
+                                        </td>
+                                        <td id="tablecontent">
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
@@ -2148,7 +2158,7 @@ function Bill() {
 
                                                 ))}
                                         </td>
-                                        <td>
+                                        <td id="tablecontent">
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
@@ -2163,7 +2173,7 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
 
-                                                        {<div>{labtotal = parseInt(value.labchr) * parseInt(value.labqty)}</div>
+                                                        {<div>{labtotal = parseFloat(value.labchr) * parseFloat(value.labqty)}</div>
 
 
                                                         }
@@ -2180,7 +2190,47 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>sub Total:{labtotal1}</td>
+                                        <td style={{fontWeight:"bold"}}>sub Total:{labtotal1}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><hr style={{ width: "80%", marginLeft: "-10%" }}></hr></td>
+                                    </tr>
+
+
+                                    <thead><br /><br /><br /></thead>
+                                    <br /><br />
+                                    <tr style={{ marginTop: "5%" }}>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td ><td style={{ fontWeight: "bold" }}>Total</td><td>:</td><td style={{ fontWeight: "bold" }}>{labtotal1}</td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Advance Paid</td><td>:</td><td style={{ fontWeight: "bold" }}>{advance}</td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Discount Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{discount}</td></td>
                                     </tr>
 
                                     <tr>
@@ -2190,51 +2240,20 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><hr /></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{( labtotal1 ) - (advance) - (discount)}</td></td>
                                     </tr>
-                                    <thead><br/><br/><br/></thead>
-<br/><br/>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total:{labtotal1}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total Advance Paid:{advance}</td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Discount Amount:{discount}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>balance Due:{(labtotal1) - (advance) - (discount)}</td>
-                                    </tr>
-                                    <tfoot><br/><br/><br/><br/><br/><br/></tfoot>
+                                    <tfoot><br /><br /><br /><br /><br /><br /></tfoot>
                                 </table>
+
                             </div>
+
+
                         </div>
+
+
+
+
+
                     </div>
                 </div>
             </div>
