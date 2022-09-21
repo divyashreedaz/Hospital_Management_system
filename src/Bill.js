@@ -4,24 +4,24 @@ import "./Bill.css";
 import ReactToPrint from "react-to-print";
 import axios from 'axios'
 import Navbar from "./Navbar/Navbar";
-import phardata from "./phardata.json";
+// import phardata from "./phardata.json";
 function Bill() {
-    // const [phardata, setphardata] = React.useState([]);
-    // async function fetchData() {
-    //     try {
-    //         const data = await axios.get('http://18.220.4.67:8081/pharmacy')
-    //         setphardata(data.data)
+    const [phardata, setphardata] = React.useState([]);
+    async function fetchData() {
+        try {
+            const data = await axios.get('http://18.220.4.67:8081/pharmacy')
+            setphardata(data.data)
 
-    //         console.log(data.data)
+            console.log(data.data)
 
-    //     } catch (error) {
-    //         console.log(error);
+        } catch (error) {
+            console.log(error);
 
-    //     }
-    // }
-    // useEffect(() => {
-    //     fetchData();
-    // }, [])
+        }
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
     let componentRef = useRef(null);
     let componentphar = useRef(null);
     let componentlab = useRef(null);
