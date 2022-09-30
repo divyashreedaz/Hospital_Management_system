@@ -4,24 +4,26 @@ import "./Bill.css";
 import ReactToPrint from "react-to-print";
 import axios from 'axios'
 import Navbar from "./Navbar/Navbar";
-// import phardata from "./phardata.json";
+import Emrcharges from "./Emrcharges";
+import Wardcharges from "./Wardcharges";
+import Concharges from "./Concharges";
+import Servicecharges from "./Servicecharges";
+import Labcharges from "./Labcharges";
+import Pharcharges from "./Pharcharges";
 function Bill() {
-    const [phardata, setphardata] = React.useState([]);
-    async function fetchData() {
-        try {
-            const data = await axios.get('http://18.220.4.67:8081/pharmacy')
-            setphardata(data.data)
-
-            console.log(data.data)
-
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
-    useEffect(() => {
-        fetchData();
-    }, [])
+    // const [phardata, setphardata] = React.useState([]);
+    // async function fetchData() {
+    //     try {
+    //         const data = await axios.get('http://18.220.4.67:8081/pharmacy')
+    //         setphardata(data.data)
+    //         console.log(data.data)
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+    // useEffect(() => {
+    //     fetchData();
+    // }, [])
     let componentRef = useRef(null);
     let componentphar = useRef(null);
     let componentlab = useRef(null);
@@ -37,13 +39,13 @@ function Bill() {
     var labtotal = 0;
     var phartotal1 = 0;
     var phartotal = 0;
-    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "Registration Details", emrbatch: "", emrexp: "", emrchr: "500", emrqty: "1" }]);
+    const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "Registration Charges", emrbatch: "", emrexp: "", emrchr: "500", emrqty: "1" }]);
     const [wardList, setWardList] = useState([{ warddate: "", wardservice: "ER", wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
     const [conList, setConList] = useState([{ condate: "", conservice: "ER", conbatch: "", conexp: "", conchr: "4000", conqty: "1" }]);
     const [serList, setSerList] = useState([{ serdate: "", serservice: "ER", serbatch: "", serexp: "", serchr: "4000", serqty: "1" }]);
     const [labList, setLabList] = useState([{ labdate: "", labservice: "ER", labbatch: "", labexp: "", labchr: "4000", labqty: "1" }]);
     const [pharList, setPharList] = useState([{ phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "0", pharqty: "1" }]);
-    const [pername, setPerName] = useState('');
+    const [pername, setPername] = useState('');
     const [perbill, setPerbill] = useState('');
     const [perip, setPerip] = useState('');
     const [permr, setPermr] = useState('');
@@ -65,7 +67,7 @@ function Bill() {
         setDiscount(event.target.value);
     };
     const handlenameChange = event => {
-        setPerName(event.target.value);
+        setPername(event.target.value);
     };
     const handledummyChange = event => {
         setPerdummy(event.target.value);
@@ -103,172 +105,10 @@ function Bill() {
     const handleconChange = event => {
         setPercon(event.target.value);
     };
-
-    const handleEmrChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...emrList];
-
-        list[index][name] = value;
-        if (name == "emrservice" && value == "Registration Details") {
-            list[index][name] = "Registration Details"
-            list[index]["emrchr"] = "500"
-        }
-       
-
-        setEmrList(list);
-    };
-
-    const handleEmrRemove = (index) => {
-        const list = [...emrList];
-        list.splice(index, 1);
-        setEmrList(list);
-    };
-
-    const handleEmrAdd = () => {
-        setEmrList([...emrList, { emrdate: "", emrservice: "Registration Details", emrbatch: "", emrexp: "", emrchr: "500", emrqty: "1" }]);
-    };
-    const handleWardChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...wardList];
-        list[index][name] = value;
-        if (name == "wardservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["wardchr"] = "4000"
-        }
-        else if (name == "wardservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["wardchr"] = "40000"
-        }
-        else if (name == "wardservice" && value == "GENERAL WARD") {
-            list[index][name] = "GENERAL WARD"
-            list[index]["wardchr"] = "100"
-        }
-        setWardList(list);
-    };
-
-    const handleWardRemove = (index) => {
-        const list = [...wardList];
-        list.splice(index, 1);
-        setWardList(list);
-    };
-
-    const handleWardAdd = () => {
-        setWardList([...wardList, { warddate: "", wardservice: "", wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
-    };
-    const handleConChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...conList];
-        list[index][name] = value;
-        if (name == "conservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["conchr"] = "4000"
-        }
-        else if (name == "conservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["conchr"] = "40000"
-        }
-        else if (name == "conservice" && value == "GENERAL WARD") {
-            list[index][name] = "GENERAL WARD"
-            list[index]["conchr"] = "100"
-        }
-        setConList(list);
-    };
-
-    const handleConRemove = (index) => {
-        const list = [...conList];
-        list.splice(index, 1);
-        setConList(list);
-    };
-
-    const handleConAdd = () => {
-        setConList([...conList, { condate: "", conservice: "", conbatch: "", conexp: "", conchr: "4000", conqty: "1" }]);
-    };
-    const handleSerChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...serList];
-        list[index][name] = value;
-        if (name == "serservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["serchr"] = "4000"
-        }
-        else if (name == "serservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["serchr"] = "40000"
-        }
-        else if (name == "serservice" && value == "GENERAL WARD") {
-            list[index][name] = "GENERAL WARD"
-            list[index]["serchr"] = "100"
-        }
-        setSerList(list);
-    };
-
-    const handleSerRemove = (index) => {
-        const list = [...serList];
-        list.splice(index, 1);
-        setSerList(list);
-    };
-
-    const handleSerAdd = () => {
-        setSerList([...serList, { serdate: "", serservice: "", serbatch: "", serexp: "", serchr: "4000", serqty: "1" }]);
-    };
-    const handleLabChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...labList];
-        list[index][name] = value;
-        if (name == "labservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["labchr"] = "4000"
-        }
-        else if (name == "labservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["labchr"] = "40000"
-        }
-        else if (name == "labservice" && value == "GENERAL WARD") {
-            list[index][name] = "GENERAL WARD"
-            list[index]["labchr"] = "100"
-        }
-        setLabList(list);
-    };
-
-    const handleLabRemove = (index) => {
-        const list = [...labList];
-        list.splice(index, 1);
-        setLabList(list);
-    };
-
-    const handleLabAdd = () => {
-        setLabList([...labList, { labdate: "", labservice: "", labbatch: "", labexp: "", labchr: "4000", labqty: "1" }]);
-    };
-    const handlePharChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...pharList];
-        list[index][name] = value;
-        {
-            phardata.map((info) => {
-                if (name == "pharservice" && value == info.productName) {
-                    list[index][name] = info.productName
-                    list[index]["pharchr"] = info.productPrice
-                }
-            })
-        }
-        setPharList(list);
-    };
-
-    const handlePharRemove = (index) => {
-        const list = [...pharList];
-        list.splice(index, 1);
-        setPharList(list);
-    };
-
-    const handlePharAdd = () => {
-        setPharList([...pharList, { phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "590", pharqty: "1" }]);
-    };
-
     {
         emrList &&
             emrList.map((value, index) => (
                 <div key={index}>
-
                     {total1 += parseFloat(value.emrchr) * parseFloat(value.emrqty)}
                 </div>
             ))
@@ -277,19 +117,14 @@ function Bill() {
         wardList &&
             wardList.map((value, index) => (
                 <div key={index}>
-
                     {wardtotal1 += parseFloat(value.wardchr) * parseFloat(value.wardqty)}
-
-
                 </div>
-
             ))
     }
     {
         conList &&
             conList.map((value, index) => (
                 <div key={index}>
-
                     {contotal1 += parseFloat(value.conchr) * parseFloat(value.conqty)}
                 </div>
             ))
@@ -298,7 +133,6 @@ function Bill() {
         serList &&
             serList.map((value, index) => (
                 <div key={index}>
-
                     {sertotal1 += parseFloat(value.serchr) * parseFloat(value.serqty)}
                 </div>
             ))
@@ -307,7 +141,6 @@ function Bill() {
         labList &&
             labList.map((value, index) => (
                 <div key={index}>
-
                     {labtotal1 += parseFloat(value.labchr) * parseFloat(value.labqty)}
                 </div>
             ))
@@ -316,11 +149,28 @@ function Bill() {
         pharList &&
             pharList.map((value, index) => (
                 <div key={index}>
-
                     {phartotal1 += parseFloat(value.pharchr) * parseFloat(value.pharqty)}
                 </div>
             ))
     }
+    const EmrDisplay = () => {
+        return <Emrcharges emrList={emrList} setEmrList={setEmrList} />;
+    };
+    const WardDisplay = () => {
+        return <Wardcharges wardList={wardList} setWardList={setWardList} />;
+    };
+    const ConDisplay = () => {
+        return <Concharges conList={conList} setConList={setConList} />;
+    };
+    const SerDisplay = () => {
+        return <Servicecharges serList={serList} setSerList={setSerList} />;
+    };
+    const LabDisplay = () => {
+        return <Labcharges labList={labList} setLabList={setLabList} />;
+    };
+    const PharDisplay = () => {
+        return <Pharcharges pharList={pharList} setPharList={setPharList} />;
+    };
     return (
         <div>
             <Navbar />
@@ -355,7 +205,6 @@ function Bill() {
                                             </div></td>
                                     </tr>
                                 </div>
-
                                 <div>
                                     <tr><td>Bill NO.</td><td><div style={{ marginLeft: "450%" }}>:</div></td><td><div style={{ marginLeft: "12%" }}><input
                                         name="perbill"
@@ -397,7 +246,7 @@ function Bill() {
                                         required
                                     /></td>
                                     </tr></div>
-                                    <div>
+                                <div>
                                     <tr><td>Address</td><td><div style={{ marginLeft: "350%" }}>:</div></td><td><div style={{ marginLeft: "8%" }}><input
                                         name="peradd"
                                         type="text"
@@ -407,9 +256,7 @@ function Bill() {
                                         required
                                     /></div></td>
                                     </tr></div>
-
                             </div>
-
                             <div class="float-child1bl">
                                 <div>
                                     <tr><td>Age/Sex</td><td><div style={{ marginLeft: "900%" }}>:</div></td><td><div style={{ marginLeft: "24%" }}><input
@@ -421,9 +268,9 @@ function Bill() {
                                         required
                                     /></div></td>
                                     </tr></div>
-                                    <div><tr>
+                                <div><tr>
                                     <td>Bill date</td><td><div style={{ marginLeft: "990%" }}>:</div></td>
-                                    <td><div style={{marginLeft:"28%"}}><input
+                                    <td><div style={{ marginLeft: "28%" }}><input
                                         name="perbd"
                                         type="datetime-local"
                                         id="perbd"
@@ -465,8 +312,7 @@ function Bill() {
                                         required
                                     /></td>
                                     </tr></div>
-
-<div>
+                                <div>
                                     <tr><td>Department</td><td><div style={{ marginLeft: "480%" }}>:</div></td><td><div style={{ marginLeft: "11%" }}><input
                                         name="perdpt"
                                         type="text"
@@ -477,580 +323,20 @@ function Bill() {
                                     /></div></td>
                                     </tr></div>
                             </div>
-
                         </div>
-                        <br />  <br />  <br />  <br />  <br /> <br />  <br />  <br />  <br /><br/>
+                        <br />  <br />  <br />  <br />  <br /> <br />  <br />  <br />  <br /><br />
                         <label htmlFor="service" style={{ marginTop: "5%", textDecoration: "underline", fontWeight: "bold" }}>EMR charges</label>
-                        {emrList.map((value, index) => (
-                            <div key={index} className="services">
-                                <div className="first-division" id="boxalign">
-                                    <div>
-                                        <p>Date</p><input
-                                            name="emrdate"
-                                            type="date"
-                                            id="emrdate"
-                                            value={value.emrdate}
-                                            onChange={(e) => handleEmrChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Service</p>
-                                        <select name="emrservice" id="emrservice" onChange={(e) => handleEmrChange(e, index)}>
-                                            <option default value="Registration Details">Registration Details</option>
-                                          
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <p>Batch No.</p>
-                                        <input
-                                            name="emrbatch"
-                                            type="text"
-                                            id="emrbatch"
-                                            value={value.emrbatch}
-                                            onChange={(e) => handleEmrChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Exp.Dt</p>
-                                        <input
-                                            name="emrexp"
-                                            type="date"
-                                            id="emrexp"
-                                            value={value.emrexp}
-                                            onChange={(e) => handleEmrChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <p>Charges</p>
-                                        <input
-                                            name="emrchr"
-                                            type="text"
-                                            id="emrchr"
-                                            value={value.emrchr}
-                                            placeholder="Enter zero if No value"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Quantity</p>
-                                        <input
-                                            name="emrqty"
-                                            type="text"
-                                            id="emrqty"
-                                            value={value.emrqty}
-                                            onChange={(e) => handleEmrChange(e, index)}
-                                            placeholder="Enter zero if No value"
-                                            required
-                                        />
-                                    </div>
-
-
-                                    {emrList.length - 1 === index && (
-                                        <button
-                                            type="button"
-                                            onClick={handleEmrAdd}
-                                            className="add-btn"
-                                        >
-                                            <span>Add a row</span>
-                                        </button>
-                                    )}
-                                </div>
-                                <div className="second-division">
-                                    {emrList.length !== 1 && (
-                                        <button
-                                            type="button"
-                                            onClick={() => handleEmrRemove(index)}
-                                            className="remove-btn"
-                                        >
-                                            <span>Remove</span>
-                                        </button>
-                                    )}
-                                </div>
-
-                            </div>
-                        ))}
+                        {EmrDisplay()}
                         <label htmlFor="service" style={{ textDecoration: "underline", fontWeight: "bold" }}>Ward charges</label>
-                        {wardList.map((value, index) => (
-                            <div key={index} className="services">
-                                <div className="first-division" id="boxalign">
-                                    <div>
-                                        <p>Date</p><input
-                                            name="warddate"
-                                            type="date"
-                                            id="warddate"
-                                            value={value.warddate}
-                                            onChange={(e) => handleWardChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Service</p>
-                                        <select name="wardservice" id="wardservice" onChange={(e) => handleWardChange(e, index)}>
-                                            <option default value="ER">ER</option>
-                                            <option value="ICU">ICU</option>
-                                            <option value="GENERAL WARD">General Ward</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <p>Batch No.</p>
-                                        <input
-                                            name="wardbatch"
-                                            type="text"
-                                            id="wardbatch"
-                                            value={value.wardbatch}
-                                            onChange={(e) => handleWardChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Exp.Dt</p>
-                                        <input
-                                            name="wardexp"
-                                            type="date"
-                                            id="wardexp"
-                                            value={value.wardexp}
-                                            onChange={(e) => handleWardChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Charges</p>
-                                        <input
-                                            name="wardchr"
-                                            type="text"
-                                            id="wardchr"
-                                            value={value.wardchr}
-                                            placeholder="Enter zero if No value"
-                                            onChange={(e) => handleWardChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Quantity</p>
-                                        <input
-                                            name="wardqty"
-                                            type="text"
-                                            id="wardqty"
-                                            value={value.wardqty}
-                                            placeholder="Enter zero if No value"
-                                            onChange={(e) => handleWardChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    {wardList.length - 1 === index && (
-                                        <button
-                                            type="button"
-                                            onClick={handleWardAdd}
-                                            className="add-btn"
-                                        >
-                                            <span>Add a row</span>
-                                        </button>
-                                    )}
-                                </div>
-                                <div className="second-division">
-                                    {wardList.length !== 1 && (
-                                        <button
-                                            type="button"
-                                            onClick={() => handleWardRemove(index)}
-                                            className="remove-btn"
-                                        >
-                                            <span>Remove</span>
-                                        </button>
-                                    )}
-                                </div>
-
-                            </div>
-                        ))}
+                        {WardDisplay()}
                         <label htmlFor="service" style={{ textDecoration: "underline", fontWeight: "bold" }}>Consultation charges</label>
-                        {conList.map((value, index) => (
-                            <div key={index} className="services">
-                                <div className="first-division" id="boxalign">
-                                    <div>
-                                        <p>Date</p><input
-                                            name="condate"
-                                            type="date"
-                                            id="condate"
-                                            value={value.condate}
-                                            onChange={(e) => handleConChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Service</p>
-                                        <select name="conservice" id="conservice" onChange={(e) => handleConChange(e, index)}>
-                                            <option default value="ER">ER</option>
-                                            <option value="ICU">ICU</option>
-                                            <option value="GENERAL WARD">General Ward</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <p>Batch No.</p>
-                                        <input
-                                            name="conbatch"
-                                            type="text"
-                                            id="conbatch"
-                                            value={value.conbatch}
-                                            onChange={(e) => handleConChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Exp.Dt</p>
-                                        <input
-                                            name="conexp"
-                                            type="date"
-                                            id="conexp"
-                                            value={value.conexp}
-                                            onChange={(e) => handleConChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-
-
-                                    <div>
-                                        <p>Charges</p>
-                                        <input
-                                            name="conchr"
-                                            type="text"
-                                            id="conchr"
-                                            value={value.conchr}
-                                            onChange={(e) => handleConChange(e, index)}
-                                            placeholder="Enter zero if No value"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Quantity</p>
-                                        <input
-                                            name="conqty"
-                                            type="text"
-                                            id="conqty"
-                                            value={value.conqty}
-                                            onChange={(e) => handleConChange(e, index)}
-                                            placeholder="Enter zero if No value"
-                                            required
-                                        />
-                                    </div>
-
-
-                                    {conList.length - 1 === index && (
-                                        <button
-                                            type="button"
-                                            onClick={handleConAdd}
-                                            className="add-btn"
-                                        >
-                                            <span>Add a row</span>
-                                        </button>
-                                    )}
-                                </div>
-                                <div className="second-division">
-                                    {conList.length !== 1 && (
-                                        <button
-                                            type="button"
-                                            onClick={() => handleConRemove(index)}
-                                            className="remove-btn"
-                                        >
-                                            <span>Remove</span>
-                                        </button>
-                                    )}
-
-                                </div>
-
-                            </div>
-                        ))}
+                        {ConDisplay()}
                         <label htmlFor="service" style={{ textDecoration: "underline", fontWeight: "bold" }}>Service charges</label>
-                        {serList.map((value, index) => (
-                            <div key={index} className="services">
-                                <div className="first-division" id="boxalign">
-                                    <div>
-                                        <p>Date</p><input
-                                            name="serdate"
-                                            type="date"
-                                            id="serdate"
-                                            value={value.serdate}
-                                            onChange={(e) => handleSerChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Service</p>
-                                        <select name="serservice" id="serservice" onChange={(e) => handleSerChange(e, index)}>
-                                            <option default value="ER">ER</option>
-                                            <option value="ICU">ICU</option>
-                                            <option value="GENERAL WARD">General Ward</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <p>Batch No.</p>
-                                        <input
-                                            name="serbatch"
-                                            type="text"
-                                            id="serbatch"
-                                            value={value.serbatch}
-                                            onChange={(e) => handleSerChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Exp.Dt</p>
-                                        <input
-                                            name="serexp"
-                                            type="date"
-                                            id="serexp"
-                                            value={value.serexp}
-                                            onChange={(e) => handleSerChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-
-
-                                    <div>
-                                        <p>Charges</p>
-                                        <input
-                                            name="serchr"
-                                            type="text"
-                                            id="serchr"
-                                            value={value.serchr}
-                                            placeholder="Enter zero if No value"
-                                            onChange={(e) => handleSerChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Quantity</p>
-                                        <input
-                                            name="serqty"
-                                            type="text"
-                                            id="serqty"
-                                            value={value.serqty}
-                                            placeholder="Enter zero if No value"
-                                            onChange={(e) => handleSerChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-
-
-                                    {serList.length - 1 === index && (
-                                        <button
-                                            type="button"
-                                            onClick={handleSerAdd}
-                                            className="add-btn"
-                                        >
-                                            <span>Add a row</span>
-                                        </button>
-                                    )}
-                                </div>
-                                <div className="second-division">
-                                    {serList.length !== 1 && (
-                                        <button
-                                            type="button"
-                                            onClick={() => handleSerRemove(index)}
-                                            className="remove-btn"
-                                        >
-                                            <span>Remove</span>
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
+                        {SerDisplay()}
                         <label htmlFor="service" style={{ textDecoration: "underline", fontWeight: "bold" }}>Laboratory charges</label>
-                        {labList.map((value, index) => (
-                            <div key={index} className="services">
-                                <div className="first-division" id="boxalign">
-                                    <div>
-                                        <p>Date</p><input
-                                            name="labdate"
-                                            type="date"
-                                            id="labdate"
-                                            value={value.labdate}
-                                            onChange={(e) => handleLabChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Service</p>
-                                        <select name="labservice" id="labservice" onInput onChange={(e) => handleLabChange(e, index)}>
-                                            <option default value="ER">ER</option>
-                                            <option value="ICU">ICU</option>
-                                            <option value="GENERAL WARD">General Ward</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <p>Batch No.</p>
-                                        <input
-                                            name="labbatch"
-                                            type="text"
-                                            id="labbatch"
-                                            value={value.labbatch}
-                                            onChange={(e) => handleLabChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Exp.Dt</p>
-                                        <input
-                                            name="labexp"
-                                            type="date"
-                                            id="labexp"
-                                            value={value.labexp}
-                                            onChange={(e) => handleLabChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <p>Charges</p>
-                                        <input
-                                            name="labchr"
-                                            type="text"
-                                            placeholder="Enter zero if No value"
-                                            id="labchr"
-                                            value={value.labchr}
-                                            onChange={(e) => handleLabChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Quantity</p>
-                                        <input
-                                            name="labqty"
-                                            type="text"
-                                            id="labqty"
-                                            placeholder="Enter zero if No value"
-                                            value={value.labqty}
-                                            onChange={(e) => handleLabChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    {labList.length - 1 === index && (
-                                        <button
-                                            type="button"
-                                            onClick={handleLabAdd}
-                                            className="add-btn"
-                                        >
-                                            <span>Add a row</span>
-                                        </button>
-                                    )}
-                                </div>
-                                <div className="second-division">
-                                    {labList.length !== 1 && (
-                                        <button
-                                            type="button"
-                                            onClick={() => handleLabRemove(index)}
-                                            className="remove-btn"
-                                        >
-                                            <span>Remove</span>
-                                        </button>
-                                    )}
-
-                                </div>
-
-                            </div>
-                        ))}
+                        {LabDisplay()}
                         <label htmlFor="service" style={{ textDecoration: "underline", fontWeight: "bold" }}>Pharmacy charges</label>
-                        {pharList.map((value, index) => (
-                            <div key={index} className="services">
-                                <div className="first-division1" id="boxalign1">
-                                    <div>
-                                        <p>Date</p><input
-                                            name="phardate"
-                                            type="date"
-                                            id="phardate"
-                                            value={value.phardate}
-                                            onChange={(e) => handlePharChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Service</p>
-                                        <input list="prodname" name="pharservice" id="productName" onChange={(e) => handlePharChange(e, index)} />
-                                        <datalist id="prodname">
-                                            {phardata.map((info) => {
-
-                                                return (
-                                                    <option value={info.productName}>{info.productName}</option>
-                                                )
-
-                                            })}
-
-                                        </datalist>
-
-                                    </div>
-                                    <div>
-                                        <p>Batch No.</p><input
-                                            name="pharbatch"
-                                            type="text"
-                                            id="pharbatch"
-                                            value={value.pharbatch}
-                                            onChange={(e) => handlePharChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Exp.Dt</p>
-                                        <input
-                                            name="pharexp"
-                                            type="date"
-                                            id="pharexp"
-                                            value={value.pharexp}
-                                            onChange={(e) => handlePharChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Charges</p>
-                                        <input
-                                            name="pharchr"
-                                            type="text"
-                                            id="pharchr"
-                                            value={value.pharchr}
-                                            onChange={(e) => handlePharChange(e, index)}
-                                            placeholder="Enter zero if No value"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Quantity</p>
-                                        <input
-                                            name="pharqty"
-                                            type="text"
-                                            id="pharqty"
-                                            value={value.pharqty}
-                                            placeholder="Enter zero if No value"
-                                            onChange={(e) => handlePharChange(e, index)}
-                                            required
-                                        />
-                                    </div>
-                                    {pharList.length - 1 === index && (
-                                        <button
-                                            type="button"
-                                            onClick={handlePharAdd}
-                                            className="add-btn"
-                                        >
-                                            <span>Add a row</span>
-                                        </button>
-                                    )}
-                                </div>
-                                <div className="second-division1">
-                                    {pharList.length !== 1 && (
-                                        <button
-                                            type="button"
-                                            onClick={() => handlePharRemove(index)}
-                                            className="remove-btn"
-                                        >
-                                            <span>Remove</span>
-                                        </button>
-                                    )}
-
-                                </div>
-
-                            </div>
-
-                        ))}
+                        {PharDisplay()}
                         <br />
                         <tr>
                             <td>Total Advance paid</td><td> <div style={{ marginLeft: "630%" }}>:</div></td><td>
@@ -1087,30 +373,24 @@ function Bill() {
                         <ReactToPrint
                             trigger={() => {
                                 return <button style={{ marginLeft: "2%" }}>Print the pharmacy bill</button>
-
                             }
                             }
                             content={() => componentphar}
-
                         />
                         <ReactToPrint
                             trigger={() => {
                                 return <button style={{ marginLeft: "2%" }}>Print the lab bill</button>
-
                             }
                             }
                             content={() => componentlab}
                         />
                     </div>
-
                     <br />
-
                 </form>
                 <br />
                 <div  >
-                <div class="print" ref={el => (componentRef = el)}>
+                    <div class="print" ref={el => (componentRef = el)}>
                         <div class="float-containerbl" style={{ marginTop: "25%" }}>
-
                             <div style={{ textAlign: "center", fontSize: "150%", fontWeight: "bold", marginBottom: "4%" }}>Discharge Breakup Bill</div>
                             <div class="float-childbl" style={{ marginLeft: "5%", marginRight: "5%" }} >
                                 <tr>
@@ -1180,20 +460,14 @@ function Bill() {
                                     <td>:</td>
                                     <td>{perdpt}</td>
                                 </tr>
-
                             </div>
-
                         </div>
                         <br />
                         <div style={{ marginTop: "10%", marginLeft: "5%", marginRight: "4%" }}>
                             <div  >
-                                <table style={{fontSize:"90%"}}>
-
-
+                                <table style={{ fontSize: "90%" }}>
                                     <tr>
-
                                         <th>Date</th>
-
                                         <th >Service/
                                             <br />Investigation</th>
                                         <th>Batch No.</th>
@@ -1201,9 +475,7 @@ function Bill() {
                                         <th>Charges</th>
                                         <th>Quantity</th>
                                         <th>Amount</th>
-
                                     </tr>
-
                                     <tr>
                                         <td colspan="5">
                                             <div style={{ textDecoration: "underline" }}>
@@ -1217,9 +489,7 @@ function Bill() {
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.emrdate && value.emrdate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1227,25 +497,19 @@ function Bill() {
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.emrservice && value.emrservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td >
-
                                         </td>
-                                        <td >
-
+                                        <td>
                                         </td>
                                         <td id="tablecontent">
                                             {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.emrchr && value.emrchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1253,29 +517,18 @@ function Bill() {
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.emrqty && value.emrqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td >
                                             {emrList &&
                                                 emrList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{total = parseFloat(value.emrchr) * parseFloat(value.emrqty)}</div>
-
-
-                                                        }
-
-
+                                                        {<div>{total = parseFloat(value.emrchr) * parseFloat(value.emrqty)}</div>}
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
-
                                     <tr>
                                         <td>  </td>
                                         <td>  </td>
@@ -1283,7 +536,7 @@ function Bill() {
                                         <td>  </td>
                                         <td>  </td>
                                         <td></td>
-                                        <td style={{fontWeight:"bold"}}>Sub Total:{total1}</td>
+                                        <td style={{ fontWeight: "bold" }}>Sub Total:{total1}</td>
                                     </tr>
                                     <tr><td colspan="5"><div style={{ textDecoration: "underline" }}>Ward Charges</div>
                                     </td></tr>
@@ -1293,9 +546,7 @@ function Bill() {
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.warddate && value.warddate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1303,25 +554,19 @@ function Bill() {
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.wardservice && value.wardservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
-
                                         </td>
                                         <td>
-
                                         </td>
                                         <td id="tablecontent">
                                             {wardList &&
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.wardchr && value.wardchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1329,26 +574,17 @@ function Bill() {
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.wardqty && value.wardqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
                                             {wardList &&
                                                 wardList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{wardtotal = parseFloat(value.wardchr) * parseFloat(value.wardqty)}</div>
-
-
-                                                        }
-
+                                                        {<div>{wardtotal = parseFloat(value.wardchr) * parseFloat(value.wardqty)}</div> }
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
                                     <br></br>
                                     <tr>
@@ -1358,7 +594,7 @@ function Bill() {
                                         <td> </td>
                                         <td> </td>
                                         <td> </td>
-                                        <td style={{fontWeight:"bold"}}>sub Total:{wardtotal1}</td>
+                                        <td style={{ fontWeight: "bold" }}>Sub Total:{wardtotal1}</td>
                                     </tr>
                                     <tr >
                                         <td colSpan="5">
@@ -1367,16 +603,13 @@ function Bill() {
                                             </div>
                                         </td>
                                     </tr>
-
                                     <tr>
                                         <td >
                                             {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.condate && value.condate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1384,25 +617,19 @@ function Bill() {
                                                 conList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.conservice && value.conservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td >
-
                                         </td>
                                         <td >
-
                                         </td>
                                         <td id="tablecontent">
                                             {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.conchr && value.conchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1410,26 +637,17 @@ function Bill() {
                                                 conList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.conqty && value.conqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
                                             {conList &&
                                                 conList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{contotal = parseFloat(value.conchr) * parseFloat(value.conqty)}</div>
-
-
-                                                        }
-
+                                                        {<div>{contotal = parseFloat(value.conchr) * parseFloat(value.conqty)}</div>}
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -1438,7 +656,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style={{fontWeight:"bold"}}>sub Total:{contotal1}</td>
+                                        <td style={{ fontWeight: "bold" }}>Sub Total:{contotal1}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -1453,9 +671,7 @@ function Bill() {
                                                 serList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.serdate && value.serdate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td >
@@ -1463,25 +679,19 @@ function Bill() {
                                                 serList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.serservice && value.serservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td >
-
                                         </td>
                                         <td >
-
                                         </td>
                                         <td id="tablecontent">
                                             {serList &&
                                                 serList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.serchr && value.serchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1489,25 +699,17 @@ function Bill() {
                                                 serList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.serqty && value.serqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
                                             {serList &&
                                                 serList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{sertotal = parseFloat(value.serchr) * parseFloat(value.serqty)}</div>
-
-
-                                                        }
+                                                        {<div>{sertotal = parseFloat(value.serchr) * parseFloat(value.serqty)}</div>}
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -1516,7 +718,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style={{fontWeight:"bold"}}>sub Total:{sertotal1}</td>
+                                        <td style={{ fontWeight: "bold" }}>Sub Total:{sertotal1}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -1531,9 +733,7 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labdate && value.labdate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1541,25 +741,19 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labservice && value.labservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
-
                                         </td>
                                         <td>
-
                                         </td>
                                         <td id="tablecontent">
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labchr && value.labchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1567,25 +761,17 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labqty && value.labqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{labtotal = parseFloat(value.labchr) * parseFloat(value.labqty)}</div>
-
-
-                                                        }
+                                                        {<div>{labtotal = parseFloat(value.labchr) * parseFloat(value.labqty)}</div>                                                        }
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -1594,7 +780,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style={{fontWeight:"bold"}}>sub Total:{labtotal1}</td>
+                                        <td style={{ fontWeight: "bold" }}>Sub Total:{labtotal1}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -1609,9 +795,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.phardate && value.phardate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1619,9 +803,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharservice && value.pharservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1629,9 +811,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharbatch && value.pharbatch}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1639,7 +819,6 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharexp && value.pharexp}
-
                                                     </div>
 
                                                 ))}
@@ -1649,9 +828,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharchr && value.pharchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1659,26 +836,17 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharqty && value.pharqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
                                             {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{phartotal = parseFloat(value.pharchr) * parseFloat(value.pharqty)}</div>
-
-
-                                                        }
-
+                                                        {<div>{phartotal = parseFloat(value.pharchr) * parseFloat(value.pharqty)}</div>}
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -1687,9 +855,8 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style={{fontWeight:"bold"}} >sub Total:{phartotal1}</td>
+                                        <td style={{ fontWeight: "bold" }} >Sub Total:{phartotal1}</td>
                                     </tr>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -1699,8 +866,6 @@ function Bill() {
                                         <td></td>
                                         <td><hr style={{ width: "80%", marginLeft: "-10%" }}></hr></td>
                                     </tr>
-
-
                                     <thead><br /><br /><br /></thead>
                                     <br /><br />
                                     <tr style={{ marginTop: "5%" }}>
@@ -1730,7 +895,6 @@ function Bill() {
                                         <td></td>
                                         <td><td style={{ fontWeight: "bold" }}>Discount Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{discount}</td></td>
                                     </tr>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -1742,27 +906,14 @@ function Bill() {
                                     </tr>
                                     <tfoot><br /><br /><br /><br /><br /><br /></tfoot>
                                 </table>
-
                             </div>
-
-
                         </div>
-
-
-
-
-
                     </div>
-
-
                 </div><br /><br />
-
                 {/* ---------------------------pharmacy----------------------- */}
-
                 <div  >
-                <div class="print" ref={el => (componentphar = el)}>
+                    <div class="print" ref={el => (componentphar = el)}>
                         <div class="float-containerbl" style={{ marginTop: "25%" }}>
-
                             <div style={{ textAlign: "center", fontSize: "150%", fontWeight: "bold", marginBottom: "4%" }}>Pharmacy Bill</div>
                             <div class="float-childbl" style={{ marginLeft: "5%", marginRight: "2%" }} >
                                 <tr>
@@ -1800,7 +951,6 @@ function Bill() {
                                     <td>{peradd}</td>
                                 </tr>
                             </div>
-
                             <div class="float-child1bl">
                                 <tr>
                                     <td>Age/Sex</td>
@@ -1832,20 +982,14 @@ function Bill() {
                                     <td>:</td>
                                     <td>{perdpt}</td>
                                 </tr>
-
                             </div>
-
                         </div>
                         <br />
                         <div style={{ marginTop: "10%", marginLeft: "5%", marginRight: "4%" }}>
                             <div  >
                                 <table >
-
-
                                     <tr>
-
                                         <th>Date</th>
-
                                         <th >Service/
                                             <br />Investigation</th>
                                         <th>Batch No.</th>
@@ -1853,10 +997,7 @@ function Bill() {
                                         <th>Charges</th>
                                         <th>Quantity</th>
                                         <th>Amount</th>
-
                                     </tr>
-
-                                    
                                     <tr>
                                         <td colspan="2">
                                             <div style={{ textDecoration: "underline" }}>
@@ -1870,9 +1011,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.phardate && value.phardate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1880,9 +1019,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharservice && value.pharservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1890,9 +1027,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharbatch && value.pharbatch}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -1900,9 +1035,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharexp && value.pharexp}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1910,9 +1043,7 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharchr && value.pharchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -1920,26 +1051,17 @@ function Bill() {
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.pharqty && value.pharqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
                                             {pharList &&
                                                 pharList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{phartotal = parseFloat(value.pharchr) * parseFloat(value.pharqty)}</div>
-
-
-                                                        }
-
+                                                        {<div>{phartotal = parseFloat(value.pharchr) * parseFloat(value.pharqty)}</div>}
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -1948,9 +1070,8 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style={{fontWeight:"bold"}}>sub Total:{phartotal1}</td>
+                                        <td style={{ fontWeight: "bold" }}>Sub Total:{phartotal1}</td>
                                     </tr>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -1960,8 +1081,6 @@ function Bill() {
                                         <td></td>
                                         <td><hr style={{ width: "80%", marginLeft: "-10%" }}></hr></td>
                                     </tr>
-
-
                                     <thead><br /><br /><br /></thead>
                                     <br /><br />
                                     <tr style={{ marginTop: "5%" }}>
@@ -1991,7 +1110,6 @@ function Bill() {
                                         <td></td>
                                         <td><td style={{ fontWeight: "bold" }}>Discount Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{discount}</td></td>
                                     </tr>
-
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -1999,29 +1117,18 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><td style={{ fontWeight: "bold" }}>Total Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{( phartotal1) - (advance) - (discount)}</td></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{(phartotal1) - (advance) - (discount)}</td></td>
                                     </tr>
                                     <tfoot><br /><br /><br /><br /><br /><br /></tfoot>
                                 </table>
-
                             </div>
-
-
                         </div>
-
-
-
-
-
                     </div>
                 </div><br /><br />
-                {/* 
-                -------------------------------lab-------------------------- */}
-
+                {/* --------------------------lab-------------------------- */}
                 <div  >
-                <div class="print" ref={el => (componentlab = el)}>
+                    <div class="print" ref={el => (componentlab = el)}>
                         <div class="float-containerbl" style={{ marginTop: "25%" }}>
-
                             <div style={{ textAlign: "center", fontSize: "150%", fontWeight: "bold", marginBottom: "4%" }}>Laboratory Bill</div>
                             <div class="float-childbl" style={{ marginLeft: "5%", marginRight: "5%" }} >
                                 <tr>
@@ -2059,7 +1166,6 @@ function Bill() {
                                     <td>{peradd}</td>
                                 </tr>
                             </div>
-
                             <div class="float-child1bl">
                                 <tr>
                                     <td>Age/Sex</td>
@@ -2091,20 +1197,14 @@ function Bill() {
                                     <td>:</td>
                                     <td>{perdpt}</td>
                                 </tr>
-
                             </div>
-
                         </div>
                         <br />
                         <div style={{ marginTop: "10%", marginLeft: "5%", marginRight: "4%" }}>
                             <div  >
                                 <table >
-
-
                                     <tr>
-
                                         <th>Date</th>
-
                                         <th >Service/
                                             <br />Investigation</th>
                                         <th>Batch No.</th>
@@ -2112,7 +1212,6 @@ function Bill() {
                                         <th>Charges</th>
                                         <th>Quantity</th>
                                         <th>Amount</th>
-
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -2127,9 +1226,7 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labdate && value.labdate}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
@@ -2137,25 +1234,19 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labservice && value.labservice}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
-
                                         </td>
                                         <td>
-
                                         </td>
                                         <td id="tablecontent">
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labchr && value.labchr}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td id="tablecontent">
@@ -2163,25 +1254,17 @@ function Bill() {
                                                 labList.map((value, index) => (
                                                     <div key={index}>
                                                         {value.labqty && value.labqty}
-
                                                     </div>
-
                                                 ))}
                                         </td>
                                         <td>
                                             {labList &&
                                                 labList.map((value, index) => (
                                                     <div key={index}>
-
-                                                        {<div>{labtotal = parseFloat(value.labchr) * parseFloat(value.labqty)}</div>
-
-
-                                                        }
+                                                        {<div>{labtotal = parseFloat(value.labchr) * parseFloat(value.labqty)}</div>}
                                                     </div>
-
                                                 ))}
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -2190,7 +1273,7 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style={{fontWeight:"bold"}}>sub Total:{labtotal1}</td>
+                                        <td style={{ fontWeight: "bold" }}>Sub Total:{labtotal1}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -2201,8 +1284,6 @@ function Bill() {
                                         <td></td>
                                         <td><hr style={{ width: "80%", marginLeft: "-10%" }}></hr></td>
                                     </tr>
-
-
                                     <thead><br /><br /><br /></thead>
                                     <br /><br />
                                     <tr style={{ marginTop: "5%" }}>
@@ -2240,25 +1321,16 @@ function Bill() {
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td><td style={{ fontWeight: "bold" }}>Total Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{( labtotal1 ) - (advance) - (discount)}</td></td>
+                                        <td><td style={{ fontWeight: "bold" }}>Total Amount</td><td>:</td><td style={{ fontWeight: "bold" }}>{(labtotal1) - (advance) - (discount)}</td></td>
                                     </tr>
                                     <tfoot><br /><br /><br /><br /><br /><br /></tfoot>
                                 </table>
-
                             </div>
-
-
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>
         </div>
     );
 }
-
 export default Bill;

@@ -28,7 +28,7 @@ class Pharmacyform extends Component {
         };
         console.log(data)
         axios
-            .post("http://18.220.4.67:8081/pharmacy", data)
+            .post("http://3.14.80.235:8081/pharmacy", data)
             .then(res => console.log(res))
             alert("data saved successfully")
             .catch(err => console.log(err));

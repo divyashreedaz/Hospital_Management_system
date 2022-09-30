@@ -19,8 +19,12 @@ class Homepage extends Component {
                     <div class="boxhome4">
                     <a href="/pharmacyform" class="button">PHARMACY</a>
                     </div>
-                    
-                    
+                    <div class="boxhome5">
+                    <a href="/Labtest" class="button">DIAGNOSIS</a>
+                    </div>
+                    <div class="boxhome6">
+                    <a href="/Consultant" class="button">CONSULTANT</a>
+                    </div>
                 </div>
             </div>
         );

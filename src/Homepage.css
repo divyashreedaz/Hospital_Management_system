@@ -8,7 +8,7 @@
   .boxhome1 {
     margin-left: 10%;
     grid-column-start: 3;
-    grid-column-end: 9;
+    grid-column-end: 10;
     grid-row-start: 1;
     grid-row-end: 3;
 
@@ -22,10 +22,28 @@
   }
   .boxhome4 {
     margin-left: 10%;
-    grid-column-start: 7;
-    grid-column-end:10;
+    grid-column-start: 3;
+    grid-column-end:9;
     grid-row-start: 4;
     grid-row-end: 6;
+
+   
+  }
+  .boxhome5
+   {
+    grid-column-start: 11;
+    grid-column-end:15;
+    grid-row-start: 4;
+    grid-row-end: 6;
+
+   
+  }
+  .boxhome6
+   {
+    grid-column-start: 7;
+    grid-column-end:10;
+    grid-row-start: 7;
+    grid-row-end: 9;
 
    
   }
@@ -34,7 +52,7 @@
     background-color: #8763e3;
     border: none;
     color: white;
-    padding: 70px 150px;
+    padding: 70px 140px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
