@@ -11,19 +11,6 @@ import Servicecharges from "./Servicecharges";
 import Labcharges from "./Labcharges";
 import Pharcharges from "./Pharcharges";
 function Bill() {
-    // const [phardata, setphardata] = React.useState([]);
-    // async function fetchData() {
-    //     try {
-    //         const data = await axios.get('http://18.220.4.67:8081/pharmacy')
-    //         setphardata(data.data)
-    //         console.log(data.data)
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-    // useEffect(() => {
-    //     fetchData();
-    // }, [])
     let componentRef = useRef(null);
     let componentphar = useRef(null);
     let componentlab = useRef(null);

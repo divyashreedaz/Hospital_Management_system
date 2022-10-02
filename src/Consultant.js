@@ -4,32 +4,59 @@ import axios from "axios";
 import "./Consultant.css";
 
 class Consultant extends Component {
-   
     state = {
         consultantName: "",
-        consultantCharge: ""
+        consultantCharge: "",
+        consdata:[],
+        uid:0
     };
-
+    componentDidMount() {
+        axios.get(`http://3.14.80.235:8081/consultants`)
+          .then(res => {
+            const consdata= res.data;
+            this.setState({ consdata });
+          })
+        
+      }
+      
+    
     onconsultantNameChange = e => {
         this.setState({
             consultantName: e.target.value
         });
+        
     };
 
     onconsultantChargeChange = e => {
         this.setState({
+            
             consultantCharge: e.target.value
         });
+      
     };
     handleSubmit = e => {
+        {
+            this.state.consdata.map((info) => {
+               
+                console.log(this.state.consultantName)
+                if (this.state.consultantName === info.consultantName) 
+                {
+                    // console.log(info.id)
+                    this.state.uid=info.id
+                    console.log(this.state.uid)
+                }
+            })
+        }
+        
         e.preventDefault();
         const data = {
             consultantName: this.state.consultantName,
             consultantCharge: this.state.consultantCharge
         };
         console.log(data)
+       
         axios
-            .post("http://3.14.80.235:8081/consultants", data)
+            .put("http://3.14.80.235:8081/consultants/"+this.state.uid, data)
             .then(res => console.log(res))
             alert("data saved successfully")
             .catch(err => console.log(err));

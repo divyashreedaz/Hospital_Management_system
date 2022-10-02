@@ -6,9 +6,18 @@ import "./pharmacyform.css";
 class Pharmacyform extends Component {
     state = {
         productName: "",
-        productPrice: ""
+        productPrice: "",
+        pharsdata:[],
+        uid:0
     };
-
+    componentDidMount() {
+        axios.get(`http://3.14.80.235:8081/pharmacy`)
+          .then(res => {
+            const pharsdata= res.data;
+            this.setState({ pharsdata });
+          })
+        
+      }
     onproductNameChange = e => {
         this.setState({
             productName: e.target.value
@@ -21,14 +30,28 @@ class Pharmacyform extends Component {
         });
     };
     handleSubmit = e => {
+        {
+            this.state.pharsdata.map((info) => {
+               
+                console.log(this.state.productName)
+                if (this.state.productName === info.productName) 
+                {
+                    // console.log(info.id)
+                    this.state.uid=info.productId
+                    console.log(this.state.uid)
+                }
+            })
+        }
         e.preventDefault();
         const data = {
+            productId:this.state.uid,
             productName: this.state.productName,
             productPrice: this.state.productPrice
         };
         console.log(data)
+        console.log(this.state.uid)
         axios
-            .post("http://3.14.80.235:8081/pharmacy", data)
+            .put("http://3.14.80.235:8081/pharmacy/"+this.state.uid, data)
             .then(res => console.log(res))
             alert("data saved successfully")
             .catch(err => console.log(err));

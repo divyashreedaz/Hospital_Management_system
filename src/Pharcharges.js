@@ -13,7 +13,7 @@ function Pharcharges({ pharList, setPharList }) {
             const data = await axios.get('http://3.14.80.235:8081/pharmacy'           
 )
             setphardata(data.data)
-            console.log(data.data)
+            // console.log(data.data)
         } catch (error) {
             console.log(error);
         }
@@ -25,7 +25,6 @@ function Pharcharges({ pharList, setPharList }) {
     const handlePharChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...pharList];
-        list[index][name] = value;
         {
             phardata.map((info) => {
                 if (name == "pharservice" && value == info.productName) {

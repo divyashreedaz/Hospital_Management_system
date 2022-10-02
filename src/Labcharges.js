@@ -1,24 +1,33 @@
 import React, { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
-
+import axios from 'axios'
 
 function Labcharges({ labList,setLabList}) {
-	
+    const [labdata, setLabdata] = React.useState([]);
+    async function fetchData() {
+        try {
+            const data = await axios.get('http://3.14.80.235:8081/tests'          
+)
+            setLabdata(data.data)
+            // console.log(data.data)
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
 	const handleLabChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...labList];
-        list[index][name] = value;
-        if (name == "labservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["labchr"] = "4000"
-        }
-        else if (name == "labservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["labchr"] = "40000"
-        }
-        else if (name == "labservice" && value == "GENERAL WARD") {
-            list[index][name] = "GENERAL WARD"
-            list[index]["labchr"] = "100"
+        {
+            labdata.map((info) => {
+                if (name == "labservice" && value == info.testName) {
+                    list[index][name] = info.testName
+                    list[index]["labchr"] = info.testPrice
+                }
+            })
         }
         setLabList(list);
     };
@@ -51,10 +60,15 @@ function Labcharges({ labList,setLabList}) {
                                         <p>Service</p>
                                         <input list="pd5" name="labservice" id="labservice" onChange={(e) => handleLabChange(e, index)} />
                                         <datalist id="pd5">
-                                            <option default value="ER"></option>
-                                            <option value="ICU"></option>
-                                            <option value="GENERAL WARD"></option>
-                                        </datalist>
+                                {labdata.map((info) => {
+
+                                    return (
+                                        <option value={info.testName}>{info.testName}</option>
+                                    )
+
+                                })}
+
+                            </datalist>
                                     </div>
                                     <div>
                                         <p>Batch No.</p>
