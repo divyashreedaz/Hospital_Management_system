@@ -261,7 +261,7 @@ function Bill() {
                                         name="perbd"
                                         type="datetime-local"
                                         id="perbd"
-                                        value={perdoa}
+                                        value={perbd}
                                         onChange={(e) => handlebdChange(e)}
                                         required
                                     /></div>

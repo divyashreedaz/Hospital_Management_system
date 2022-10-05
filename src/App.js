@@ -22,9 +22,11 @@ const oidcConfig = {
   authority: "https://login.microsoftonline.com/e67c1396-3ce5-4416-a7b8-77a4965b0658/",
   clientId: "b1d8aebf-4f29-4527-abd8-647882a9ee69",
   responseType: "code",
-  redirectUri: "http://localhost:3000/",
+  // redirectUri: "http://localhost:3000/",
   scope: "api://b1d8aebf-4f29-4527-abd8-647882a9ee69/sgh"
+ 
 };
+
 function App() {
   return (
     
@@ -32,6 +34,7 @@ function App() {
     <Router>
     <AuthProvider {...oidcConfig}>
       <div >
+      {console.log(oidcConfig)}
         {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Homepage />} />
