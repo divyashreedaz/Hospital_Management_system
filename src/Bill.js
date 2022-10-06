@@ -40,10 +40,10 @@ function Bill() {
     var phartotal1 = 0;
     var phartotal = 0;
     const [emrList, setEmrList] = useState([{ emrdate: "", emrservice: "Registration Charges", emrbatch: "", emrexp: "", emrchr: "500", emrqty: "1" }]);
-    const [wardList, setWardList] = useState([{ warddate: "", wardservice: "", wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
-    const [conList, setConList] = useState([{ condate: "", conservice: "", conbatch: "", conexp: "", conchr: "4000", conqty: "1" }]);
-    const [serList, setSerList] = useState([{ serdate: "", serservice: "", serbatch: "", serexp: "", serchr: "4000", serqty: "1" }]);
-    const [labList, setLabList] = useState([{ labdate: "", labservice: "", labbatch: "", labexp: "", labchr: "4000", labqty: "1" }]);
+    const [wardList, setWardList] = useState([{ warddate: "", wardservice: "", wardbatch: "", wardexp: "", wardchr: "0", wardqty: "1" }]);
+    const [conList, setConList] = useState([{ condate: "", conservice: "", conbatch: "", conexp: "", conchr: "0", conqty: "1" }]);
+    const [serList, setSerList] = useState([{ serdate: "", serservice: "", serbatch: "", serexp: "", serchr: "0", serqty: "1" }]);
+    const [labList, setLabList] = useState([{ labdate: "", labservice: "", labbatch: "", labexp: "", labchr: "0", labqty: "1" }]);
     const [pharList, setPharList] = useState([{ phardate: "", pharservice: "", pharbatch: "", pharexp: "", pharchr: "0", pharqty: "1" }]);
     const [pername, setPername] = useState('');
     const [perbill, setPerbill] = useState('');

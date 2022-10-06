@@ -29,7 +29,7 @@ class Consultant extends Component {
         };
         console.log(data)
         axios
-            .post("http://3.14.80.235:8081/consultants", data)
+            .post(`${process.env.REACT_APP_BACKENDURL}/consultants`, data)
             .then(res => console.log(res))
             alert("data saved successfully")
             .catch(err => console.log(err));

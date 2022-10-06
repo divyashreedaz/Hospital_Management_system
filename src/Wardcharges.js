@@ -8,17 +8,25 @@ function Wardcharges({ wardList,setWardList}) {
         const { name, value } = e.target;
         const list = [...wardList];
         list[index][name] = value;
-        if (name == "wardservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["wardchr"] = "4000"
+        if (name == "wardservice" && value == "MICU") {
+            list[index][name] = "MICU"
+            list[index]["wardchr"] = "6000"
         }
-        else if (name == "wardservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["wardchr"] = "40000"
+        else if (name == "wardservice" && value == "SINGLE ROOM") {
+            list[index][name] = "SINGLE ROOM"
+            list[index]["wardchr"] = "3000"
+        }
+        else if (name == "wardservice" && value == "TWIN SHARING") {
+            list[index][name] = "TWIN SHARING"
+            list[index]["wardchr"] = "2000"
+        }
+        else if (name == "wardservice" && value == "TRIPLE SHARING") {
+            list[index][name] = "TRIPLE SHARING"
+            list[index]["wardchr"] = "1500"
         }
         else if (name == "wardservice" && value == "GENERAL WARD") {
             list[index][name] = "GENERAL WARD"
-            list[index]["wardchr"] = "100"
+            list[index]["wardchr"] = "1200"
         }
         setWardList(list);
     };
@@ -30,7 +38,7 @@ function Wardcharges({ wardList,setWardList}) {
     };
 
     const handleWardAdd = () => {
-        setWardList([...wardList, { warddate: "", wardservice: "", wardbatch: "", wardexp: "", wardchr: "4000", wardqty: "1" }]);
+        setWardList([...wardList, { warddate: "", wardservice: "", wardbatch: "", wardexp: "", wardchr: "", wardqty: "1" }]);
     };
 	return (
 	  <div className="sign-up-container">
@@ -51,10 +59,12 @@ function Wardcharges({ wardList,setWardList}) {
                                         <p>Service</p>
                                         <input list="pd2" name="wardservice" id="wardservice" onChange={(e) => handleWardChange(e, index)}/>
                                         <datalist id="pd2">
-                                            <option default value="ER"></option>
-                                            <option value="ICU"></option>
+                                            <option default value="TRIPLE SHARING"></option>
+                                            <option value="MICU"></option>
                                             <option value="GENERAL WARD"></option>
-                                        </datalist>
+                                            <option value="SINGLE SHARING"></option>
+                                           <option value="TWIN SHARING"></option>
+                           </datalist>
                                     </div>
                                     <div>
                                         <p>Batch No.</p>

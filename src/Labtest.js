@@ -29,7 +29,7 @@ class Labtest extends Component {
         };
         console.log(data)
         axios
-            .post("http://3.14.80.235:8081/tests", data)
+            .post(`${process.env.REACT_APP_BACKENDURL}/tests`, data)
             .then(res => console.log(res))
             alert("data saved successfully")
             .catch(err => console.log(err));

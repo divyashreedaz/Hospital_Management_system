@@ -6,7 +6,7 @@ function Concharges({ conList, setConList}) {
     const [consultantdata, setconsultantdata] = React.useState([]);
     async function fetchData() {
         try {
-            const data = await axios.get('http://3.14.80.235:8081/consultants'           
+            const data = await axios.get(`${process.env.REACT_APP_BACKENDURL}/consultants`        
 )
             setconsultantdata(data.data)
             console.log(data.data)

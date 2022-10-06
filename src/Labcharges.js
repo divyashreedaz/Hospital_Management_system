@@ -6,7 +6,7 @@ function Labcharges({ labList,setLabList}) {
 	const [labdata, setlabdata] = React.useState([]);
     async function fetchData() {
         try {
-            const data = await axios.get('http://3.14.80.235:8081/tests'           
+            const data = await axios.get(`${process.env.REACT_APP_BACKENDURL}/tests`          
 )
             setlabdata(data.data)
             console.log(data.data)

@@ -10,7 +10,7 @@ function Pharcharges({ pharList, setPharList }) {
     const [phardata, setphardata] = React.useState([]);
     async function fetchData() {
         try {
-            const data = await axios.get('http://3.14.80.235:8081/pharmacy'           
+            const data = await axios.get(`${process.env.REACT_APP_BACKENDURL}/pharmacy`           
 )
             setphardata(data.data)
             console.log(data.data)
