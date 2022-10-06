@@ -1,24 +1,34 @@
 import React, { createContext } from "react";
 import { useState, useEffect, useRef } from "react";
-
+import axios from 'axios'
 
 function Concharges({ conList, setConList}) {
-	
+    const [consultantdata, setconsultantdata] = React.useState([]);
+    async function fetchData() {
+        try {
+            const data = await axios.get('http://3.14.80.235:8081/consultants'           
+)
+            setconsultantdata(data.data)
+            console.log(data.data)
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
     const handleConChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...conList];
         list[index][name] = value;
-        if (name == "conservice" && value == "ER") {
-            list[index][name] = "ER"
-            list[index]["conchr"] = "4000"
-        }
-        else if (name == "conservice" && value == "ICU") {
-            list[index][name] = "ICU"
-            list[index]["conchr"] = "40000"
-        }
-        else if (name == "conservice" && value == "GENERAL WARD") {
-            list[index][name] = "GENERAL WARD"
-            list[index]["conchr"] = "100"
+        {
+            consultantdata.map((info) => {
+                if (name == "conservice" && value == info.consultantName) {
+                    list[index][name] = info.consultantName
+                    list[index]["conchr"] = info.consultantCharge
+                }
+            })
         }
         setConList(list);
     };
@@ -51,9 +61,13 @@ function Concharges({ conList, setConList}) {
                                         <p>Service</p>
                                         <input list="pd3" name="conservice" id="conservice" onChange={(e) => handleConChange(e, index)}/>
                                         <datalist id="pd3">
-                                            <option default value="ER"></option>
-                                            <option value="ICU"></option>
-                                            <option value="GENERAL WARD"></option>
+                                        {consultantdata.map((info) => {
+
+return (
+    <option value={info.consultantName}>{info.consultantName}</option>
+)
+
+})}
                                         </datalist>
                                     </div>
                                     <div>
