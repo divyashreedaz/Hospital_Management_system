@@ -12,8 +12,8 @@ function Wardcharges({ wardList,setWardList}) {
             list[index][name] = "MICU"
             list[index]["wardchr"] = "6000"
         }
-        else if (name == "wardservice" && value == "SINGLE ROOM") {
-            list[index][name] = "SINGLE ROOM"
+        else if (name == "wardservice" && value == "SINGLE SHARING") {
+            list[index][name] = "SINGLE SHARING"
             list[index]["wardchr"] = "3000"
         }
         else if (name == "wardservice" && value == "TWIN SHARING") {
