@@ -25,6 +25,9 @@ class Homepage extends Component {
                     <div class="boxhome6">
                     <a href="/Consultant" class="button">CONSULTANT</a>
                     </div>
+                    <div class="boxhome7">
+                    <a href="/AdditionalServices" class="button">SERVICES</a>
+                    </div>
                 </div>
             </div>
         );

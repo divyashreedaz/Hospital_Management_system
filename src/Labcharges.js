@@ -66,7 +66,7 @@ function Labcharges({ labList,setLabList}) {
                                         {labdata.map((info) => {
 
 return (
-    <option value={info.testName}>{info.testName}</option>
+    <option value={info.testName.toUpperCase()}></option>
 )
 
 })}

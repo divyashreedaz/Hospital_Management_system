@@ -64,7 +64,7 @@ function Concharges({ conList, setConList}) {
                                         {consultantdata.map((info) => {
 
 return (
-    <option value={info.consultantName}>{info.consultantName}</option>
+    <option value={info.consultantName.toUpperCase()}></option>
 )
 
 })}

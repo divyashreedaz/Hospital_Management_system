@@ -40,14 +40,20 @@
   }
   .boxhome6
    {
-    grid-column-start: 7;
-    grid-column-end:10;
+    margin-left: 10%;
+    grid-column-start: 3;
+    grid-column-end:9; 
     grid-row-start: 7;
-    grid-row-end: 9;
-
-   
+    grid-row-end: 9; 
   }
- 
+  .boxhome7
+  {
+   grid-column-start: 11;
+   grid-column-end:15; 
+   grid-row-start: 7;
+   grid-row-end: 9; 
+ }
+
 .button {
     background-color: #8763e3;
     border: none;

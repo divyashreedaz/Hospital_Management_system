@@ -10,7 +10,7 @@ function Emrcharges({ emrList,setEmrList}) {
         const list = [...emrList];
 
         list[index][name] = value;
-        if (name == "emrservice" && value == "Registration Charges") {
+        if (name == "emrservice" && value == "REGISTRATION CHARGES") {
             list[index][name] = "Registration Details"
             list[index]["emrchr"] = "500"
         }
@@ -26,7 +26,7 @@ function Emrcharges({ emrList,setEmrList}) {
     };
 
     const handleEmrAdd = () => {
-        setEmrList([...emrList, { emrdate: "", emrservice: "Registration Details", emrbatch: "", emrexp: "", emrchr: "500", emrqty: "1" }]);
+        setEmrList([...emrList, { emrdate: "", emrservice: "Registration Details", emrbatch: "", emrexp: "", emrchr: "0", emrqty: "1" }]);
     };
 	return (
 	  <div className="sign-up-container">
@@ -47,7 +47,7 @@ function Emrcharges({ emrList,setEmrList}) {
                                         <p>Service</p>
                                         <input list="pd1" name="emrservice" id="emrservice" onChange={(e) => handleEmrChange(e, index)}/>
                                         <datalist id="pd1">
-                                            <option default value="Registration Charges">Registration Charges</option>
+                                            <option default value={"Registration Charges".toUpperCase()}></option>
                                         </datalist>
                                     </div>
                                     <div>

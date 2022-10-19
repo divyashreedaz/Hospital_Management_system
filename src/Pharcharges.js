@@ -69,7 +69,7 @@ function Pharcharges({ pharList, setPharList }) {
                                 {phardata.map((info) => {
 
                                     return (
-                                        <option value={info.productName}>{info.productName}</option>
+                                        <option value={info.productName.toUpperCase()}></option>
                                     )
 
                                 })}

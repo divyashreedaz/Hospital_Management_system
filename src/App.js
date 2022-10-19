@@ -10,7 +10,8 @@ import Homepage from "./Homepage";
 import Pharmacyform from "./Pharmacyform";
 import Labtest from "./Labtest";
 import Bill from "./Bill"
-import Consultant from "./Consultant"
+import Consultant from "./Consultant";
+import AdditionalServices from "./AdditionalServices";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
          <Route path="/Labtest" element={<Labtest />} />
          <Route path="/Bill" element={<Bill />} />
          <Route path="/Consultant" element={<Consultant />} />
-         
+         <Route path="/AdditionalServices" element={<AdditionalServices />} /> 
         </Routes>
       </div>
     </Router>
